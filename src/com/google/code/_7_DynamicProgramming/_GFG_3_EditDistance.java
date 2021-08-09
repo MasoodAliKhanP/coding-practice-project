@@ -6,7 +6,7 @@ public class _GFG_3_EditDistance {
         String str2 = "saturday";
 
         System.out.println(
-                "minEdits: " + minEditsRecurse(str1.toCharArray(), str2.toCharArray(), str1.length(), str2.length()));
+                "minEdits recurse: " + minEditsRecurse(str1.toCharArray(), str2.toCharArray(), str1.length(), str2.length()));
 
         System.out.println(
                 "minEdits dp: " + minEdits(str1.toCharArray(), str2.toCharArray(), str1.length(), str2.length()));

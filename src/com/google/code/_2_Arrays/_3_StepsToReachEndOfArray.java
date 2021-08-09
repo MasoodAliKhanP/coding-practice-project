@@ -5,7 +5,7 @@ import java.util.List;
 
 public class _3_StepsToReachEndOfArray {
     public static void main(String args[]) {
-        Integer[] arr = { 1, 1, 5, 0, 1, 1, 1, 0, 0 };
+        Integer[] arr = { 1, 1, 3, 4, 1, 0, 2, 1, 0 };
         List<Integer> steps = Arrays.asList(arr);
         System.out.println(isEndOfArrayReachable(steps));
         System.out.println(solve(arr));
@@ -48,6 +48,9 @@ public class _3_StepsToReachEndOfArray {
                     }
                 }
             }
+        }
+        for(int i = 0; i < arr.length; i++) {
+        	System.out.println("Arr["+i+"]: " + dp[i]);
         }
         return dp[arr.length - 1];
     }

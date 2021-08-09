@@ -1,6 +1,6 @@
 package com.google.code._4_LinkedLists;
 
-public class _2_8Dot2_ReverseSubList {
+public class _2_8Dot2_ReverseSubList_Iterative {
 
     public static void main(String[] args) {
         Node<Integer> node1 = new Node<>(1, null);

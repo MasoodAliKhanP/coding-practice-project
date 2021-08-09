@@ -3,9 +3,14 @@ package com.google.code._1_BitsManiuplation;
 public class _2_ComputeParity {
 
     public static void main(String args[]) {
-        int x = 4;
-        System.out.println(x ^= x);
-        System.out.println("Xor parity: " + parityViaXor(1024));
+        int x = 4;//100
+//        x = 5; //101
+        x = 1024;
+        System.out.println("XOR: " + (x ^= x));
+        
+        int y = 5;//101
+        y = 1024;
+        System.out.println("XOR parity of " + y + ": " + parityViaXor(y));
     }
 
     // Sol 1
@@ -13,7 +18,7 @@ public class _2_ComputeParity {
         short result = 0;
         while (x != 0) {
             result ^= (x & 1);
-            x >>>= 1;
+            x = (x >>> 1);
         }
         return result;
     }

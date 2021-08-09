@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-// Robot sittign on the top left corner, can move in 2 directions - right and down
+// Robot sitting on the top left corner, can move in 2 directions - right and down
 // possible paths for robot to go form (00) to (xy) 
 class Point {
     public int x;
