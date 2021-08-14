@@ -5,10 +5,7 @@ import java.util.List;
 import java.util.Stack;
 
 public class _GFG_4_TopologicalSorting {
-//  2
-//  ^
-//  |
-//  1 - > 3   4 -> 5
+
     public static void main(String[] args) {
         System.out.println("test1");
         test1();
@@ -37,6 +34,10 @@ public class _GFG_4_TopologicalSorting {
         stack.push(v.data);
     }
 
+//  2 <- 4
+//  ^
+//  |
+//  1 - > 3 <- 5 -> 6
     public static void test1() {
         GraphVertex v1 = new GraphVertex(10);
         GraphVertex v2 = new GraphVertex(20);
@@ -56,6 +57,7 @@ public class _GFG_4_TopologicalSorting {
         topologicalOrder(allVertices);
     }
 
+    
     public static void test2() {
         GraphVertex v0 = new GraphVertex(00);
         GraphVertex v1 = new GraphVertex(10);

@@ -4,11 +4,11 @@ package com.google.code._7_Searching;
 public class _1_MagicNumber {
     public static void main(String args[]) {
         int[] arrDist = { 1, 9, 12, 14, 15, 19 };
-        System.out.println(magicNumberDistinctArray(arrDist, 0, arrDist.length - 1));
+        System.out.println("Distinct: " + magicNumberDistinctArray(arrDist, 0, arrDist.length - 1));
 
         int[] arr = { 2, 3, 4, 12, 1, 5, 4 };
         int magicNumberND = magicNumberNonDistinctArray(arr, 0, arr.length - 1);
-        System.out.println("Magic Index: " + magicNumberND);
+        System.out.println("Non distinct Magic Index: " + magicNumberND);
     }
 
     private static int magicNumberDistinctArray(int[] arr, int start, int end) {

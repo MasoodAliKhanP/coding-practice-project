@@ -10,6 +10,12 @@ public class Vertex {
     private Map<Vertex, Edge> edges = new HashMap<>();
     private boolean isVisited = false;
 
+    
+    
+    
+    
+    
+    
     public Vertex(String label) {
         this.label = label;
     }

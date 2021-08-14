@@ -23,6 +23,15 @@ public class Node {
         adjacentNodes.put(destination, distance);
     }
 
+    
+    
+    
+    
+    
+    
+    
+    
+    
     public String getName() {
         return name;
     }

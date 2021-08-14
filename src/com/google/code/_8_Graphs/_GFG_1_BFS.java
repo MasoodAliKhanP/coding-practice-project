@@ -1,6 +1,9 @@
 package com.google.code._8_Graphs;
 
-public class _GFG_1_DFS {
+import java.util.LinkedList;
+import java.util.Queue;
+
+public class _GFG_1_BFS {
     public static void main(String[] args) {
         System.out.println("hello");
 
@@ -19,9 +22,7 @@ public class _GFG_1_DFS {
         v3.addEdge(v4);
         
 //        printGraph(v1);
-//        dfs(v1);
-        
-        System.out.println(dfs(v1, 20));
+        bfs(v1);   
     }
 
     public static void printGraph(GraphVertex vertex) {
@@ -34,27 +35,22 @@ public class _GFG_1_DFS {
     }
     
     
-    public static void dfs(GraphVertex v) {
-        System.out.println(v.data);
-        v.visited = true;
-        for (GraphVertex edge : v.edges) {
-            if (!edge.visited) {
-                dfs(edge);
-            }
+    public static void bfs(GraphVertex v) {
+        Queue<GraphVertex> q = new LinkedList<GraphVertex>();
+        q.add(v);
+        
+        while(!q.isEmpty()) {
+        	GraphVertex ver = q.poll();
+        	System.out.print(ver.data + " ");
+        	
+        	ver.visited = true;
+        	
+        	for(GraphVertex gv: ver.getEdges()) {
+        		if(gv.visited == false) {
+        			q.add(gv);
+        		}	
+        	}
         }
-    }
-    
-    public static boolean dfs(GraphVertex v, int x) {
-        System.out.println(v.data);
-        v.visited = true;
-        if(v.data == x) {
-        	return true;
-        }
-        for (GraphVertex edge : v.edges) {
-            if (!edge.visited) {
-                return dfs(edge, x);
-            }
-        }
-        return false;
+        
     }
 }
