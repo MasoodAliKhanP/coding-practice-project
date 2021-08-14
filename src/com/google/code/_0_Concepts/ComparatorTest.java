@@ -18,6 +18,7 @@ class SortInt implements Comparator<Integer> {
 }
 
 public class ComparatorTest {
+//Test
 //    @SuppressWarnings("unchecked")
     public static void main(String args[]) {
         List<Integer> intList = Arrays.asList(4, 9, 1, 2, 0);
