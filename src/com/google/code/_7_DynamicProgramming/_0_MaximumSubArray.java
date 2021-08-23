@@ -6,26 +6,30 @@ import java.util.List;
 public class _0_MaximumSubArray {
     public static void main(String args[]) {
         Integer[] arr = { -2, -30, 4, -1, -2, 1, 5, -3 };
+//        Integer[] arr = { -2, -30, -4, -1, -2};
+
         List<Integer> A = Arrays.asList(arr);
 
-        System.out.println(findMaximumSubarray(A));
-        System.out.println(maxSubArraySum(arr));
-        System.out.println(findMaxSubarray(A));
+        System.out.println("findMaxSubarray: "+findMaxSubarray(A)+"\n");
+
+        System.out.println("findMaximumSubarray: "+findMaximumSubarray(A)+"\n");
+        
+        System.out.println("maxSubArraySum: "+maxSubArraySum(arr)+"\n");
     }
 
-    // EOP - Calculates the non-circular solution.
+    // EOP - Calculates the non-circular solution. - good one
     private static int findMaxSubarray(List<Integer> A) {
-        int maximumSumTill = 0;
-        int maximumSum = 0;
+        int maximumSumSoFar = 0;
+        int maximumSum = A.get(0);
         for (Integer a : A) {
-            maximumSumTill = Math.max(a, a + maximumSumTill);
-            maximumSum = Math.max(maximumSum, maximumSumTill);
-            System.out.println("maxtill: " + maximumSumTill + " max: " + maximumSum);
+            maximumSumSoFar = Math.max(a, a + maximumSumSoFar);
+            maximumSum = Math.max(maximumSum, maximumSumSoFar);
+//            System.out.println("maxtill: " + maximumSumTill + " max: " + maximumSum);
         }
         return maximumSum;
     }
 
-    // EOP DP INTRO
+    // EOP DP INTRO - Not following
     public static int findMaximumSubarray(List<Integer> A) {
 
         int minSum = Integer.MAX_VALUE;
@@ -35,9 +39,9 @@ public class _0_MaximumSubArray {
             sum += a;
             minSum = Math.min(minSum, sum);
             maxSum = Math.max(maxSum, sum - minSum);
-            System.out.println("sum: " + sum + " minSum: " + minSum + " maxsum: " + maxSum);
+//            System.out.println("sum: " + sum + " minSum: " + minSum + " maxsum: " + maxSum);
         }
-        System.out.println("_________________");
+//        System.out.println("_________________");
         return maxSum;
     }
 

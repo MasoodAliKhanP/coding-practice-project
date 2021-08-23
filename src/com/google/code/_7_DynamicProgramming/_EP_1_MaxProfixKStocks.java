@@ -13,15 +13,16 @@ class MaxProfit {
 public class _EP_1_MaxProfixKStocks {
     public static void main(String[] args) {
         List<Double> A;
-        Double[] ADouble = { 35.0, 10.0, 50.0, 20.0, 10.0, 70.0, 80.0, 40.0 };
+//        Double[] ADouble = { 35.0, 10.0, 50.0, 20.0, 10.0, 70.0, 80.0, 40.0 };
+        Double[] ADouble =  { 12.0, 14.0, 17.0, 10.0, 14.0, 13.0, 12.0, 15.0 };
         A = Arrays.asList(ADouble);
-        System.out.println(maxKPairsProfits(A, 2));
-//        maxProfitStock(A, 2);
+        System.out.println("maxKPairsProfits: " + maxKPairsProfits(A, 2));
+        
 
-        int k = 3;
+        int k = 2;
         int price[] = { 12, 14, 17, 10, 14, 13, 12, 15 };
         int n = price.length;
-        System.out.println(maxProfit(price, n, k));
+        System.out.println("Max profit: " + maxProfit(price, n, k));
 
         A = Arrays.asList(10.0, 22.0, 5.0, 75.0, 65.0, 80.0);
 //        System.out.println(maxKPairsProfits(A, 2));
@@ -67,7 +68,7 @@ public class _EP_1_MaxProfixKStocks {
             profit[i][0] = 0;
 
         // profit is 0 if we don't do any
-        // transation (i.e. k =0)
+        // transaction (i.e. k =0)
         for (int j = 0; j <= n; j++)
             profit[0][j] = 0;
 
@@ -81,21 +82,5 @@ public class _EP_1_MaxProfixKStocks {
         }
 
         return profit[k][n - 1];
-    }
-
-    // This code is contributed by Sam007
-    public static double maxProfitStock(List<Double> A, int k) {
-        List<Double> sumList = new ArrayList<>();
-        for (int i = 0; i < k; i++) {
-            Double maxProfit = Double.MIN_VALUE;
-            Double min = Double.MAX_VALUE;
-
-            for (int j = 0; j < A.size(); j++) {
-                min = Math.min(A.get(j), min);
-                maxProfit = Math.max(maxProfit, A.get(j) - min);
-            }
-            sumList.add(maxProfit);
-        }
-        return 0;
     }
 }
