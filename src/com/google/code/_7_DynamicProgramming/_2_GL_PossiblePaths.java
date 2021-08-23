@@ -45,14 +45,16 @@ class Point {
 
 public class _2_GL_PossiblePaths {
     public static void main(String[] args) {
-        int x = 2;
-        int y = 2;
+        int x = 3;
+        int y = 3;
         System.out.println(possiblePathsRec(x, y));
 
         List<Point> path = new ArrayList<>();
         Map<Point, Boolean> cache = new HashMap<>();
         System.out.println(getPaths(x, y, path, cache));
 //        System.out.println(path.size() + ": " + cache.size());
+        
+        System.out.println("Possible ways: " + numberOfPaths(x, y));
     }
 
     // Rec
@@ -89,6 +91,29 @@ public class _2_GL_PossiblePaths {
     private static boolean isFree(int x, int y) {
         return true;
     }
+
+
+ 	private static int numberOfPaths(int m, int n)
+ 	{
+ 		// Create a 2D table to store results
+ 		// of subproblems
+ 		int count[][] = new int[m][n];
+
+ 		for (int i = 0; i < m; i++)
+ 			count[i][0] = 1;
+
+ 		for (int j = 0; j < n; j++)
+ 			count[0][j] = 1;
+
+ 		for (int i = 1; i < m; i++) {
+ 			for (int j = 1; j < n; j++)
+ 				count[i][j] = count[i - 1][j] + count[i][j - 1]; //+ count[i-1][j-1];
+ 		}
+ 		return count[m - 1][n - 1];
+ 	}
+
+
+ // This code is contributed by Sumit Ghosh
 
     // Object test
     private static void checkObjEquals() {

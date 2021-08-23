@@ -3,7 +3,7 @@ package com.google.code._7_DynamicProgramming;
 import java.util.Arrays;
 import java.util.List;
 
-public class _0_MaximumSubArray {
+public class _0_GFG_MaximumSubArray {
     public static void main(String args[]) {
         Integer[] arr = { -2, -30, 4, -1, -2, 1, 5, -3 };
 //        Integer[] arr = { -2, -30, -4, -1, -2};
