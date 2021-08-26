@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Stack;
 
-public class _GFG_3_CycleInGraphUsingStack {
+public class _GFG_3_CycleInGraph {
 //              3
 //            ^
 //            / |
@@ -36,6 +36,7 @@ public class _GFG_3_CycleInGraphUsingStack {
 
 	}
 
+	//Using stack
 	public static boolean isGraphCyclic(GraphVertex v, Stack<GraphVertex> stack) {
 		if (stack.contains(v)) {
 			return true;

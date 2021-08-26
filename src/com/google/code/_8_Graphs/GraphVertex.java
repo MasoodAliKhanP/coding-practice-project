@@ -3,7 +3,7 @@ package com.google.code._8_Graphs;
 import java.util.ArrayList;
 import java.util.List;
 
-class GraphVertex {//take from baeldung: https://www.baeldung.com/java-graph-has-a-cycle
+class GraphVertex {//taken from baeldung: https://www.baeldung.com/java-graph-has-a-cycle
     boolean visited;
     int data;
     List<GraphVertex> edges;

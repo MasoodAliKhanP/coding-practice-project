@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Map.Entry;
 import java.util.Set;
 
-public class _Baeldung_2_Dijkstra {
+public class _8_Dijkstra {
 
     public static Graph calculateShortestPathFromSource(Graph graph, Node source) {
 

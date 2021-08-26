@@ -1,6 +1,6 @@
 package com.google.code._4_LinkedLists;
 
-public class ReverseList_Recursive {
+public class _3_ReverseList_Recursive {
 	static Node head; // head of list
 
 	static class Node {

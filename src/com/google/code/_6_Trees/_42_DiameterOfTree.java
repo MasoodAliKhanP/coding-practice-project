@@ -1,15 +1,14 @@
-package com.google.code._6_BinaryTrees;
+package com.google.code._6_Trees;
 
-public class _4_DiameterOfTree {
+public class _42_DiameterOfTree {
 	static int diameter = 0;
 	public static void main(String[] args) {
-		TreeNode<Integer> tNode = new TreeNode<>(10, null, null);
-		TreeNode<Integer> tNode1 = new TreeNode<>(20, null, null);
-		TreeNode<Integer> tNode2 = new TreeNode<>(70, null, null);
-		TreeNode<Integer> tNode3 = new TreeNode<>(40, null, null);
-		TreeNode<Integer> tNode4 = new TreeNode<>(50, null, null);
+		TreeNode<Integer> tNode = new TreeNode<>(1, null, null);
+		TreeNode<Integer> tNode1 = new TreeNode<>(10, null, null);
+		TreeNode<Integer> tNode2 = new TreeNode<>(20, null, null);
+		TreeNode<Integer> tNode3 = new TreeNode<>(30, null, null);
+		TreeNode<Integer> tNode4 = new TreeNode<>(40, null, null);
 
-		// Case1: balanced
 		tNode.left = tNode1;
 		tNode.right = tNode2;
 		tNode1.left = tNode3;
@@ -25,8 +24,8 @@ public class _4_DiameterOfTree {
 		if(node == null) {
 			return 0;
 		}
-		int leftHt = diameter(node.left);
-		int rtht = diameter(node.right);
+		int leftHt = depth(node.left);
+		int rtht = depth(node.right);
 		diameter = Math.max(leftHt+rtht+1, diameter);
 		return Math.max(leftHt, rtht) + 1;
 	}

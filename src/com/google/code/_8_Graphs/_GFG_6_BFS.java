@@ -3,7 +3,7 @@ package com.google.code._8_Graphs;
 import java.util.LinkedList;
 import java.util.Queue;
 
-public class _GFG_1_BFS {
+public class _GFG_6_BFS {
     public static void main(String[] args) {
         System.out.println("hello");
 

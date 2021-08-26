@@ -1,4 +1,4 @@
-package com.google.code._6_BinaryTrees;
+package com.google.code._6_Trees;
 
 public class _9_RootToLeaf {
 	public static void main(String[] args) {
@@ -16,7 +16,7 @@ public class _9_RootToLeaf {
 		tNode2.left = tNode5;
 		
 		System.out.println("Max sum path: " + maxSumPath(tNode));
-		System.out.println("Max sum path: " + hasPathSum(tNode, 51));
+		System.out.println("Has sum path: " + hasPathSum(tNode, 51));
 
 	}
 	
@@ -24,11 +24,11 @@ public class _9_RootToLeaf {
 		if(node == null) {
 			return 0;
 		}
-		int lHeight = maxSumPath(node.left);
-		int rHeight = maxSumPath(node.right);
+		int lSum = maxSumPath(node.left);
+		int rSum = maxSumPath(node.right);
 		
 		
-		return Math.max(lHeight, rHeight) + node.data; //Or you can write a one liner
+		return Math.max(lSum, rSum) + node.data; 
 	}
 	
 	public static boolean hasPathSum(TreeNode<Integer> node, int sum) {

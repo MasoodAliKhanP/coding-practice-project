@@ -1,4 +1,4 @@
-package com.google.code._6_BinaryTrees;
+package com.google.code._6_Trees;
 
 public class _8_CountNodes {
 	public int countNodes(TreeNode<Integer> root) {

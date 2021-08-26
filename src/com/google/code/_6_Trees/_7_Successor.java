@@ -1,4 +1,4 @@
-package com.google.code._6_BinaryTrees;
+package com.google.code._6_Trees;
 
 import java.util.ArrayList;
 import java.util.List;

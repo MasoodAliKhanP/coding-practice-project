@@ -1,4 +1,4 @@
-package com.google.code._6_BinaryTrees;
+package com.google.code._6_Trees;
 
 public class _5_MirrorOfTree {
 	public static void main(String[] args) {

@@ -1,4 +1,4 @@
-package com.google.code._6_BinaryTrees;
+package com.google.code._6_Trees;
 
 public class _0_TreeTraversals {
 	public static void main(String[] args) {

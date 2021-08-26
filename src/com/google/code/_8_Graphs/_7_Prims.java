@@ -5,11 +5,11 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-public class _Baeldung_1_Prim {
+public class _7_Prims {
 
     private List<Vertex> graph;
 
-    public _Baeldung_1_Prim(List<Vertex> graph) {
+    public _7_Prims(List<Vertex> graph) {
         this.graph = graph;
     }
 
@@ -101,7 +101,7 @@ public class _Baeldung_1_Prim {
         graph.add(d);
         graph.add(e);
 
-        _Baeldung_1_Prim prim = new _Baeldung_1_Prim(graph);
+        _7_Prims prim = new _7_Prims(graph);
 
         System.out.println(prim.originalGraphToString());
         System.out.println("----------------");

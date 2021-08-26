@@ -1,6 +1,6 @@
-package com.google.code._6_BinaryTrees;
+package com.google.code._6_Trees;
 
-public class _2_MaxElement {
+public class _3_FindElement {
 	public static void main(String[] args) {
 		TreeNode<Integer> tNode = new TreeNode<>(10, null, null);
 		TreeNode<Integer> tNode1 = new TreeNode<>(20, null, null);
@@ -13,21 +13,19 @@ public class _2_MaxElement {
 		tNode.right = tNode2;
 		tNode1.left = tNode3;
 		tNode1.right = tNode4;
-		
-		System.out.println(maxElement(tNode));
-//		System.out.println(height(tNode));
+
+		System.out.println(eleExistInBST(tNode, 50));
 	}
 	
-	public static int maxElement(TreeNode<Integer> node) {
+	
+	public static boolean eleExistInBST(TreeNode<Integer> node, Integer x) {
 		if(node == null) {
-			return Integer.MIN_VALUE;
+			return false;
 		}
-		int data = node.data;
-		int lData = maxElement(node.left);
-		int rData = maxElement(node.right);
+		if(node.data == x) {
+			return true;
+		}
 		
-		return Math.max(data, Math.max(lData, rData));
+		return eleExistInBST(node.left, x) || eleExistInBST(node.right, x);
 	}
-	
-	
 }
