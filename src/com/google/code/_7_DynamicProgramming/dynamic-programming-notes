@@ -29,7 +29,7 @@ Dynamic Programming:
 		
 		
 10 Main variations:
-	1. 0-1 Knapsack (6)
+	1. 0-1 Knapsack (6)(subset sum, equalsum partition)
 	2. Unbounded Knapsack (5)
 	3. Fibonacci (7)
 	4. LCS (15)
