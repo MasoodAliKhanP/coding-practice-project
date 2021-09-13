@@ -5,16 +5,16 @@ import java.util.List;
 
 public class _0_GFG_MaximumSubArray {
     public static void main(String args[]) {
-        Integer[] arr = { -2, -30, 4, -1, -2, 1, 5, -3 };
+        Integer[] arr = {-2,1,-3,4,-1,2,1,-5,4};
 //        Integer[] arr = { -2, -30, -4, -1, -2};
 
         List<Integer> A = Arrays.asList(arr);
 
         System.out.println("findMaxSubarray: "+findMaxSubarray(A)+"\n");
 
-        System.out.println("findMaximumSubarray: "+findMaximumSubarray(A)+"\n");
-        
-        System.out.println("maxSubArraySum: "+maxSubArraySum(arr)+"\n");
+//        System.out.println("findMaximumSubarray: "+findMaximumSubarray(A)+"\n");
+//        
+//        System.out.println("maxSubArraySum: "+maxSubArraySum(arr)+"\n");
     }
 
     // EOP - Calculates the non-circular solution. - good one
@@ -24,7 +24,8 @@ public class _0_GFG_MaximumSubArray {
         for (Integer a : A) {
             maximumSumSoFar = Math.max(a, a + maximumSumSoFar);
             maximumSum = Math.max(maximumSum, maximumSumSoFar);
-//            System.out.println("maxtill: " + maximumSumTill + " max: " + maximumSum);
+//            {-2,1,-3,4,-1,2,1,-5,4};
+            System.out.println("maxtill: " + maximumSumSoFar + " max: " + maximumSum);
         }
         return maximumSum;
     }

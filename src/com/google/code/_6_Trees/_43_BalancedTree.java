@@ -40,6 +40,21 @@ public class _43_BalancedTree {
 		return Math.max(lHt, rHt) + 1;
 	}
 	
+	public static int depth2(TreeNode<Integer>root) {
+		if (root == null || !isBalanced) {
+			return 0;
+		}
+		int lHt = depth(root.left);
+		int rHt = depth(root.right);
+
+		if(Math.abs(lHt - rHt) > 1){
+            isBalanced = false;
+        }
+
+		return Math.max(lHt, rHt) + 1;
+	}
+	
+	
 	public static boolean isBalancedTree(TreeNode<Integer> node) {
 		depth(node);
 		return isBalanced;
