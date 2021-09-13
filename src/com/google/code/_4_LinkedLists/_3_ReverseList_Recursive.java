@@ -51,35 +51,36 @@ public class _3_ReverseList_Recursive {
 			head = current;
 			return;
 		}
-		reverseKM(next);
+		reverseGlobalHead(next);
 		next.next = current;
 		current.next = null;
 	}
 
-	static void reverseKM(Node current, Node[] rHead) {
-		if (current == null) {
-			return;
-		}
-		Node next = current.next;
-		if (next == null) {
-			rHead[0] = current;
-			return;
-		}
-		reverseKM(next, rHead);
-		next.next = current;
-		current.next = null;
-	}
+	//Solution 2 Not following Karumanchi
+//	static void reverseKM(Node current, Node[] rHead) {
+//		if (current == null) {
+//			return;
+//		}
+//		Node next = current.next;
+//		if (next == null) {
+//			rHead[0] = current;
+//			return;
+//		}
+//		reverseKM(next, rHead);
+//		next.next = current;
+//		current.next = null;
+//	}
 
-	static Node reverseKM(Node current) {
-		if (current == null || current.next == null) {
-			return current;
-		}
-		Node next = current.next;
-		Node lhead = reverseKM(next);
-		next.next = current;
-		current.next = null;
-		return lhead;
-	}
+//	static Node reverseKM(Node current) {
+//		if (current == null || current.next == null) {
+//			return current;
+//		}
+//		Node next = current.next;
+//		Node lhead = reverseKM(next);
+//		next.next = current;
+//		current.next = null;
+//		return lhead;
+//	}
 
 	public static void main(String[] args) {
 		push(4);
@@ -99,8 +100,9 @@ public class _3_ReverseList_Recursive {
 //		reverseKM(head, rHead);
 //		print(rHead[0]);
 
-		Node rHead = reverseKM(head);
-		print(rHead);
+//		Node rHead = reverseKM(head);
+		reverseGlobalHead(head);
+		print(head);
 
 	}
 }

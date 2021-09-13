@@ -3,7 +3,7 @@ package com.google.code._8_Graphs;
 import java.util.Arrays;
 import java.util.List;
 
-public class _GFG_2_ComponentsInForest {
+public class _2_ComponentsInForest {
 
 //  2
 //  ^

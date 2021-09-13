@@ -50,7 +50,7 @@ public class _1_9Point1_StackWithMaxAPI {
 		stack.push(10);
 		stack.push(3);
 
-		System.out.println("Max: " + stack.max());
+//		System.out.println("Max: " + stack.max());
 		while (!stack.empty()) {
 			System.out.println("Pop:" + stack.pop());
 			System.out.println("Max: " + stack.max());

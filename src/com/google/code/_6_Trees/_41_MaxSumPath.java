@@ -24,10 +24,10 @@ public class _41_MaxSumPath {
 		if(node == null) {
 			return 0;
 		}
-		int leftHt = Math.max(depth(node.left),0);
-		int rtht = Math.max(depth(node.right), 0);
-		maxSumPath = Math.max(leftHt+rtht+node.data, maxSumPath);
-		return Math.max(leftHt, rtht) + node.data;
+		int lSum = Math.max(depth(node.left),0);
+		int rSum = Math.max(depth(node.right), 0);
+		maxSumPath = Math.max(lSum+rSum+node.data, maxSumPath);
+		return Math.max(lSum, rSum) + node.data;
 	}
 	
 	

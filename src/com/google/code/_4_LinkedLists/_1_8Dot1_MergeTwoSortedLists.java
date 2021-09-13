@@ -79,6 +79,7 @@ public class _1_8Dot1_MergeTwoSortedLists {
     		}
     		current = current.next;
     	}
+    	
     	current.next = l1 != null? l1: l2;
     	return head.next;
     }

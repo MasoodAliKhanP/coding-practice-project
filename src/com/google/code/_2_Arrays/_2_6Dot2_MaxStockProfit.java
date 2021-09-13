@@ -32,8 +32,8 @@ public class _2_6Dot2_MaxStockProfit {
         double minPrice = Double.MAX_VALUE;
         double maxProfit = 0.0;
         for (Double price : prices) {
-            maxProfit = Math.max(maxProfit, price - minPrice);
             minPrice = Math.min(minPrice, price);
+            maxProfit = Math.max(maxProfit, price - minPrice);
         }
         return maxProfit;
     }

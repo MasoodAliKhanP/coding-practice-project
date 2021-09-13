@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Stack;
 
-public class _GFG_3_CycleInGraph {
+public class _3_CycleInGraph {
 //              3
 //            ^
 //            / |

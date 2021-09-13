@@ -5,8 +5,8 @@ import java.util.Iterator;
 public class _4_SortedArray {
 	public static void main(String[] args) {
 //		System.out.println("Main");
-//		int[] arr = {1, 1, 4, 4, 5};
-		int[] arr = {1, 4, 4, 5, 5};
+		int[] arr = {1, 1, 4, 4, 5};
+//		int[] arr = {1, 4, 4, 5, 5};
 //		int[] arr = {1, 1, 4, 4, 5, 6, 6}; //[0...6]
 //		int[] arr = {1, 1, 4, 5, 5, 6, 6};
 //		for (int i = 0; i < arr.length; i++) {

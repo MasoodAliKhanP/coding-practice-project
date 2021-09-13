@@ -1,6 +1,6 @@
 package com.google.code._8_Graphs;
 
-public class _GFG_5_Islands {
+public class _5_Islands {
 	static final int ROW = 3, COL = 3;
 
 	// A function to check if a given cell (row, col) can
@@ -54,7 +54,7 @@ public class _GFG_5_Islands {
 	// Driver method
 	public static void main(String[] args) throws java.lang.Exception {
 		int M[][] = new int[][] { { 1, 0, 1 }, { 0, 1, 0 }, { 1, 0, 1 } };
-		_GFG_5_Islands I = new _GFG_5_Islands();
+		_5_Islands I = new _5_Islands();
 		System.out.println("Number of islands is: " + I.countIslands(M));
 	}
 }

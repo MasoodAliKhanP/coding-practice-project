@@ -10,42 +10,29 @@ public class _43_BalancedTree {
 		TreeNode<Integer> tNode5 = new TreeNode<>(50, null, null);
 
 		// Case1: balanced
-//		tNode.left = tNode1;
-//		tNode.right = tNode2;
-//		tNode2.left = tNode3;
-//		tNode3.right = tNode4;
+		tNode.left = tNode1;
+		tNode.right = tNode2;
+		tNode2.left = tNode3;
+		tNode2.right = tNode4;
 		
 		// Case2: not balanced
-		tNode.left = tNode1;
-		tNode1.left = tNode2;
-		tNode2.left = tNode3;
-		tNode.right = tNode4;
-		tNode4.left = tNode5;
+//		tNode.left = tNode1;
+//		tNode1.left = tNode2;
+//		tNode2.left = tNode3;
+//		tNode.right = tNode4;
+//		tNode4.left = tNode5;
 
-		System.out.println("Diameter: " + isBalancedTree(tNode));
+		System.out.println("isBalanced: " + isBalancedTree(tNode));
 	}
 
 	static boolean isBalanced = true;
-	public static int depth(TreeNode<Integer> root) {
-		if (root == null) {
-			return 0;
-		}
-		int lHt = depth(root.left);
-		int rHt = depth(root.right);
-
-		if(isBalanced == true) {
-			isBalanced = Math.abs(lHt - rHt) <= 1;
-		}
-			
-		return Math.max(lHt, rHt) + 1;
-	}
 	
 	public static int depth2(TreeNode<Integer>root) {
 		if (root == null || !isBalanced) {
 			return 0;
 		}
-		int lHt = depth(root.left);
-		int rHt = depth(root.right);
+		int lHt = depth2(root.left);
+		int rHt = depth2(root.right);
 
 		if(Math.abs(lHt - rHt) > 1){
             isBalanced = false;
@@ -56,7 +43,7 @@ public class _43_BalancedTree {
 	
 	
 	public static boolean isBalancedTree(TreeNode<Integer> node) {
-		depth(node);
+		depth2(node);
 		return isBalanced;
 	}
 }
