@@ -9,12 +9,10 @@ import java.util.List;
 import java.util.Map;
 
 class SortInt implements Comparator<Integer> {
-
     @Override
     public int compare(Integer o1, Integer o2) {
         return o2 - o1;
     }
-
 }
 
 public class ComparatorTest {

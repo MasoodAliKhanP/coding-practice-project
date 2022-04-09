@@ -9,15 +9,15 @@ public class _3_Jumps {
 //		Integer[] arr = { 3, 2};
 
 		List<Integer> steps = Arrays.asList(arr);
-		System.out.println("Reachable: " + isEndOfArrayReachable(steps));
+		System.out.println("isEndOfArrayReachable: " + isEndOfArrayReachable(steps));
 //		System.out.println(dpSteps(arr));
-		System.out.println("steps: " + canJump(arr));
+		System.out.println("canJump: " + canJump(arr));
 	}
 
-	//Looks like sliding window - I will follwo this 
+	// Looks like sliding window - I will follow this 
 	// same as jumps in leetcode
-	// Strating from back - checking if the last position is reachable, 
-//	and slide the last to the index from where it is reachable
+	// starting from back - checking if the last position is reachable, 
+	// and slide the last to the index from where it is reachable
 	public static boolean canJump(Integer[] nums) {
 		int lastPos = nums.length - 1;
 		for (int i = nums.length - 1; i >= 0; i--) {

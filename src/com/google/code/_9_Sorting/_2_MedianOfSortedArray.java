@@ -11,19 +11,9 @@ public class _2_MedianOfSortedArray {
 		if (endA - startA == 1) {
 			return (Math.max(a[startA], b[startB]) + Math.min(a[endA], b[endB])) / 2;
 		}
-		/*
-		 * get the median of the first array
-		 */
+
 		int m1 = median(a, startA, endA);
-
-		/*
-		 * get the median of the second array
-		 */
 		int m2 = median(b, startB, endB);
-
-		/*
-		 * If medians are equal then return either m1 or m2
-		 */
 		if (m1 == m2) {
 			return m1;
 		}
@@ -43,9 +33,6 @@ public class _2_MedianOfSortedArray {
 		}
 	}
 
-	/*
-	 * Function to get median of a sorted array
-	 */
 	static int median(int[] arr, int start, int end) {
 		int n = end - start + 1;
 		if (n % 2 == 0) {

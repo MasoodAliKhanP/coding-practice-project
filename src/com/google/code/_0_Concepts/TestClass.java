@@ -9,6 +9,9 @@ import com.google.code._6_Trees.TreeNode;
 
 public class TestClass {
 	public static void main(String[] args) {
+		printBytes("What is going on my account");
+		printBytes("CDATA[What is going on my account]");
+		printBytes("<MSG ><![CDATA[What is going on my account]]></MSG>");
 		
 	}
 	
@@ -41,5 +44,23 @@ public class TestClass {
         map.get(uniqueTree).add(root);
         
         return uniqueTree;
+    }
+    
+    
+    private static void printBytes(String string) {
+    	// Check encoded sizes
+    	try {
+    		final byte[] utf8Bytes = string.getBytes("UTF-8");
+        	System.out.println(utf8Bytes.length); // prints "11"
+
+        	final byte[] utf16Bytes= string.getBytes("UTF-16");
+        	System.out.println(utf16Bytes.length); // prints "24"
+
+        	final byte[] utf32Bytes = string.getBytes("UTF-32");
+        	System.out.println(utf32Bytes.length); // prints "44"
+    	}
+    	catch (Exception e) {
+			e.printStackTrace();
+		}
     }
 }

@@ -1,5 +1,7 @@
 package com.google.code._1_BitsManiuplation;
 
+//number of 1s in the set plus the parity bit should always 
+//be even (or occasionally, should always be odd)
 public class _2_ComputeParity {
 
     public static void main(String args[]) {
@@ -9,7 +11,7 @@ public class _2_ComputeParity {
         System.out.println("XOR: " + (x ^= x));
         
         int y = 5;//101
-        y = 1024;
+//        y = 1024;
         System.out.println("XOR parity of " + y + ": " + parityViaXor(y));
     }
 
@@ -35,7 +37,7 @@ public class _2_ComputeParity {
         return result;
     }
 
-    // Sol 3
+    // Sol 3 -The >>> operator is the unsigned right bit-shift operator
     public static short parityViaXor(long x) {
         x ^= x >>> 32;
         x ^= x >>> 16;

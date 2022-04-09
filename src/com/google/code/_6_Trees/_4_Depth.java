@@ -41,7 +41,7 @@ public class _4_Depth {
 		if(node.left == null)
 			return minDepth(node.right) + 1;
 		if(node.right == null)
-			return maxDepth(node.left) + 1;
+			return minDepth(node.left) + 1;
 		
 		return Math.min(minDepth(node.left), minDepth(node.right)) + 1; 
 	}

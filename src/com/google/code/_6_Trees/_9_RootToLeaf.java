@@ -20,6 +20,7 @@ public class _9_RootToLeaf {
 
 	}
 	
+	
 	public static int maxSumPath(TreeNode<Integer> node) {
 		if(node == null) {
 			return 0;
@@ -31,10 +32,16 @@ public class _9_RootToLeaf {
 		return Math.max(lSum, rSum) + node.data; 
 	}
 	
+//	Given a binary tree and a number, return true if the tree has a root-to-leaf path such that 
+//			adding up all the values along the path equals the given number. 
+//			Return false if no such path can be found. 
+			
 	public static boolean hasPathSum(TreeNode<Integer> node, int sum) {
 		if(node == null) {
 			return false;
 		}
+		
+		//If you reach leaf
 		if(node.left == null && node.right == null && node.data - sum == 0) {
 			return true;
 		}

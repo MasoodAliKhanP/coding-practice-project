@@ -8,7 +8,6 @@ public class _2_Leet_NonRepeatingSubString {
 		lengthOfLongestSubstring();
 	}
 	
-	
 	// when the char  is found, we move the start, index + 1 steps of the found char.
 	// maxLen is max of maxLen and index - start (of processing) + 1 (for including current char).
 	public static void lengthOfLongestSubstring() {

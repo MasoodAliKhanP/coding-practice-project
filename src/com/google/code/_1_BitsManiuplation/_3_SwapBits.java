@@ -4,7 +4,7 @@ public class _3_SwapBits {
 
     public static void main(String args[]) {
 //        swapBits();
-        swapBits(8, 1, 2); //1000 -> 0001
+        swapBits(8, 0, 3); //1000 -> 0001
     }
 
     private static void swapBits() {

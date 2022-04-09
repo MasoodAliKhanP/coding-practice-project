@@ -11,15 +11,12 @@ class Test {
 		// Print the subsequence when reach
 		// the leaf of recursion tree
 		if (index == arr.length) {
-
 			// Condition to avoid printing
 			// empty subsequence
 			if (path.size() > 0)
 				System.out.println(path);
 		}
-
 		else {
-
 			// Subsequence without including
 			// the element at current index
 			printSubsequences(arr, index + 1, path);
