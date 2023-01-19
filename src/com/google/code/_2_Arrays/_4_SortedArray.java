@@ -1,7 +1,5 @@
 package com.google.code._2_Arrays;
 
-import java.util.Iterator;
-
 public class _4_SortedArray {
 	public static void main(String[] args) {
 //		System.out.println("Main");

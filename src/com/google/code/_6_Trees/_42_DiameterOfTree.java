@@ -18,8 +18,12 @@ public class _42_DiameterOfTree {
 		
 		System.out.println("Diameter: " + diameter(tNode));
 	}
-
-	//Similar to max sum path from leet code
+	//Similar to max sum path from leet code, here instead of data, replace it with 1
+	private static int diameter(TreeNode<Integer> node) {
+		depth(node);
+		return diameter;
+	}
+	
 	private static int depth(TreeNode<Integer> node) {
 		if(node == null) {
 			return 0;
@@ -28,11 +32,5 @@ public class _42_DiameterOfTree {
 		int rtht = depth(node.right);
 		diameter = Math.max(leftHt+rtht+1, diameter);
 		return Math.max(leftHt, rtht) + 1;
-	}
-	
-	
-	private static int diameter(TreeNode<Integer> node) {
-		depth(node);
-		return diameter;
 	}
 }

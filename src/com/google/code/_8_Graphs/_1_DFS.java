@@ -24,16 +24,7 @@ public class _1_DFS {
         System.out.println(dfs(v1, 20));
     }
 
-    public static void printGraph(GraphVertex vertex) {
-    	for(GraphVertex v: vertex.getEdges()) {
-    		System.out.println(vertex.data + " -> " + v.data);
-    		if(v.getEdges() != null || v.getEdges().size() != 0) {
-    			printGraph(v);
-    		}
-    	}
-    }
-    
-    
+    //traversing all graph
     public static void dfs(GraphVertex v) {
         System.out.println(v.data);
         v.visited = true;
@@ -44,6 +35,7 @@ public class _1_DFS {
         }
     }
     
+    //searching for element
     public static boolean dfs(GraphVertex v, int x) {
         System.out.println(v.data);
         v.visited = true;
@@ -57,4 +49,14 @@ public class _1_DFS {
         }
         return false;
     }
+    
+    public static void printGraph(GraphVertex vertex) {
+    	for(GraphVertex v: vertex.getEdges()) {
+    		System.out.println(vertex.data + " -> " + v.data);
+    		if(v.getEdges() != null || v.getEdges().size() != 0) {
+    			printGraph(v);
+    		}
+    	}
+    }
+    
 }

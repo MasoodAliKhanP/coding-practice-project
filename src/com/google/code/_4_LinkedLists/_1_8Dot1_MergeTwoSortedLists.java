@@ -26,7 +26,7 @@ public class _1_8Dot1_MergeTwoSortedLists {
 //        printLinkedList(L1);
 
         n4.next = n5;
-        Node<Integer> L2 = new Node<>(6, null);// 6->6->7
+        Node<Integer> L2 = new Node<>(6, null);// 6->10->11
         L2.next = n4;
 //        printLinkedList(L2);
 
@@ -40,7 +40,7 @@ public class _1_8Dot1_MergeTwoSortedLists {
 
     private static Node<Integer> mergeTwoSortedList(Node<Integer> p1, Node<Integer> p2) {
     	// L1: 3->4->9->14
-    	// L2: 6->6->7
+    	// L2: 6->10->11
 //        Node<Integer> p1 = L1;
 //        Node<Integer> p2 = L2;
         Node<Integer> dummyHead = new Node<>(0, null);

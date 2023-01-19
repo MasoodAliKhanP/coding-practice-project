@@ -7,11 +7,11 @@ public class _5_5dot8_ReverseDigits {
 
     private static long reverseDigits(int number) {
         long result = 0;
-        long xRemaining = Math.abs(number);
+        number = Math.abs(number);
         // 132 => 231, 32 => 23
-        while (xRemaining != 0) {
-            result = result * 10 + xRemaining % 10;
-            xRemaining = xRemaining / 10;
+        while (number != 0) {
+            result = result * 10 + number % 10;
+            number = number / 10;
 //            System.out.println(xRemaining);
         }
         return number < 0 ? -result : result;

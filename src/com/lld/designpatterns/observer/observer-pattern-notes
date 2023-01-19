@@ -1,0 +1,3 @@
+is-a (hollow arrow)= inheritance
+has-a (normal arrow) = Class contains another class
+

@@ -35,12 +35,16 @@ public class _7_Successor {
 	//Solution 1 for Binary Tree or Binary Search Tree
 	// Take O(n) time and O(n) space
 	static TreeNode<Integer> successor = null;
+	
+	//For Binary Tree not (BST), Take O(n) time and O(n) space, not a good solution
+    public static TreeNode<Integer> inorderSuccessor(TreeNode<Integer> root, TreeNode<Integer> p) {
+        InSuccessor(root, p);
+        return successor;
+    }	
     
     private static void InSuccessor(TreeNode<Integer> node, TreeNode<Integer> searchNode) {
 		List<TreeNode<Integer>> list = new ArrayList<>();
 		SuccessorUtil(node, list);
-		
-		
 		for(int i = 0; i <= list.size() -2; i++) {
 			if(searchNode == list.get(i)) {
 				successor = list.get(i+1);
@@ -56,11 +60,7 @@ public class _7_Successor {
 		}
 	}
 	
-	//For Binary Tree not (BST), Take O(n) time and O(n) space, not a good solution
-    public static TreeNode<Integer> inorderSuccessor(TreeNode<Integer> root, TreeNode<Integer> p) {
-        InSuccessor(root, p);
-        return successor;
-    }	
+
 	
     
     

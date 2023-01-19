@@ -1,10 +1,10 @@
-package com.google.code._7_Searching;
+package com.google.code._2_Searching;
 
 /* Magic number : A[i] == i, array is sorted */
 public class _1_MagicNumber {
     public static void main(String args[]) {
         int[] arrDist = { 1, 9, 12, 14, 15, 19 };
-        System.out.println("Distinct: " + magicNumberDistinctArray(arrDist, 0, arrDist.length - 1));
+        System.out.println("Distinct Magic Number: " + magicNumberDistinctArray(arrDist, 0, arrDist.length - 1));
 
         int[] arr = { 2, 3, 4, 12, 1, 5, 4 };
         int magicNumberND = magicNumberNonDistinctArray(arr, 0, arr.length - 1);

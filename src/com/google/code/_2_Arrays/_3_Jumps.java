@@ -3,6 +3,7 @@ package com.google.code._2_Arrays;
 import java.util.Arrays;
 import java.util.List;
 
+//isEndOfArrayReachable
 public class _3_Jumps {
 	public static void main(String args[]) {
 		Integer[] arr = { 1, 1, 3, 4, 1, 0, 1, 1, 0 };
@@ -21,6 +22,7 @@ public class _3_Jumps {
 	public static boolean canJump(Integer[] nums) {
 		int lastPos = nums.length - 1;
 		for (int i = nums.length - 1; i >= 0; i--) {
+			System.out.println(i+nums[i] + ":" + lastPos);
 			if (i + nums[i] >= lastPos) {
 				lastPos = i;
 			}

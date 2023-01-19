@@ -24,7 +24,7 @@ public class _0_GFG_MaximumSubArray {
         for (Integer a : A) {
             maximumSumSoFar = Math.max(a, a + maximumSumSoFar);
             maximumSum = Math.max(maximumSum, maximumSumSoFar);
-//            {-2,1,-3,4,-1,2,1,-5,4};
+//            {-2,1,-3,4,-1,2,1,-5,4};BB
             System.out.println("maxtill: " + maximumSumSoFar + " max: " + maximumSum);
         }
         return maximumSum;

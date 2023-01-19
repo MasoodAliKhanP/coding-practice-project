@@ -1,0 +1,15 @@
+git-concepts:
+
+https://www.atlassian.com/git/tutorials/merging-vs-rebasing#the-golden-rule-of-rebasing
+
+this creates a new “merge commit” in the feature branch that ties together the histories of both branches,
+ giving you a branch
+
+Consider what happens when you start working on a new feature in a dedicated branch, 
+then another team member updates the main branch with new commits. This results in a forked history, 
+which should be familiar to anyone who has used Git as a collaboration tool.
+
+Rebase your feature branch
+This moves the entire feature branch to begin on the tip of the main branch, effectively incorporating
+ all of the new commits in main. But, instead of using a merge commit, rebasing re-writes the project 
+ history by creating brand new commits for each commit in the original branch.

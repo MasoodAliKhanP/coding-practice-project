@@ -14,12 +14,15 @@ public class _41_MaxSumPath {
 		tNode1.left = tNode3;
 		tNode2.right = tNode4;
 
-		
-		
 		System.out.println("maxSumPath: " + maxSumPath(tNode));
 	}
-
+	
 	//Similar to max sum path from leet code
+	private static int maxSumPath(TreeNode<Integer> node) {
+		depth(node);
+		return maxSumPath;
+	}
+	
 	private static int depth(TreeNode<Integer> node) {
 		if(node == null) {
 			return 0;
@@ -31,8 +34,5 @@ public class _41_MaxSumPath {
 	}
 	
 	
-	private static int maxSumPath(TreeNode<Integer> node) {
-		depth(node);
-		return maxSumPath;
-	}
+	
 }

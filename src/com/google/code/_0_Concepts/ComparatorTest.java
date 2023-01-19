@@ -8,6 +8,14 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+//this is from different class, just for reference, descending order
+//static class SortByData implements Comparator<ANode> {
+//	@Override
+//	public int compare(ANode a, ANode b) {
+//		return b.data - a.data;
+//	}
+//}
+
 class SortInt implements Comparator<Integer> {
     @Override
     public int compare(Integer o1, Integer o2) {

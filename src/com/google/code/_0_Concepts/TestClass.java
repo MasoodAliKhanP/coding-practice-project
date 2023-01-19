@@ -9,10 +9,12 @@ import com.google.code._6_Trees.TreeNode;
 
 public class TestClass {
 	public static void main(String[] args) {
-		printBytes("What is going on my account");
-		printBytes("CDATA[What is going on my account]");
-		printBytes("<MSG ><![CDATA[What is going on my account]]></MSG>");
+//		printBytes("What is going on my account");
+//		printBytes("CDATA[What is going on my account]");
+//		printBytes("<MSG ><![CDATA[What is going on my account]]></MSG>");
 		
+		
+		commaSeparator();
 	}
 	
     public List<TreeNode> findDuplicateSubtrees(TreeNode root) {
@@ -62,5 +64,12 @@ public class TestClass {
     	catch (Exception e) {
 			e.printStackTrace();
 		}
+    }
+    
+    private static void commaSeparator() {
+    	 String number = "1000500000.574";
+    	    Double numParsed = Double.parseDouble(number);
+    	    String numString = String.format("%,.2f", numParsed);
+    	    System.out.println(numString);
     }
 }
