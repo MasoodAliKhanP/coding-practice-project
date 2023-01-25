@@ -1,0 +1,25 @@
+Cluster(1) -> broker(*)->topics(*) -> partitions(*) -> offset(*) -> msg(1)
+
+Kafka has time to live for messages. They are not deleted even after consumer reads the message, because other 
+consumers might read it too. They are deleted only after time expiry.
+RabbitMQ messages are deleted as soon as consumer reads it.
+
+Consumers can parallelly read from different partitions. 
+
+kafka server = kafka broker = kafka node
+
+Cluster has multiple brokers, one acts as leader and others are followers (replication sets). 
+Leader handles writes and followers read
+
+no kafka server can run withotu zookeeper
+
+zookeeper to manager multiple kafka brokers
+
+readme: 
+$ bin/zookeeper-server-start.sh config/zookeeper.properties
+$ bin/kafka-server-start.sh config/server.properties (only starts single broker)
+
+then start this service
+
+
+ 

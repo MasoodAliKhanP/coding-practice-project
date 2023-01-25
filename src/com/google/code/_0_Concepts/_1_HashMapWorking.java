@@ -62,6 +62,12 @@ public class _1_HashMapWorking {
 //
 //
 //
+	
+	
+//	Only if the two hash values are equal does the implementation check the elements for equality.
+//  This optimization makes sense because it is usually much cheaper to compare hash codes than elements.
+	
+	
 //		map.put(new Key("vishal"), 20);
 //		Steps: 
 //		Calculate hash code of Key {“vishal”}. It will be generated as 118.
@@ -111,6 +117,7 @@ public class _1_HashMapWorking {
 //		Calculate index by using index method it will be 3.
 //		Go to index 3 of the array and compare the first element’s key with the given key. If both are equals then return the value, otherwise, check for the next element if it exists.
 //		In our case, it is found as the first element and the returned value is 30.
+
 //		Fetch the data for key vaibhav: 
 //		map.get(new Key("vaibhav"));
 //		Steps: 
@@ -122,6 +129,8 @@ public class _1_HashMapWorking {
 //		If the next of node is not null traverse to the second element and repeat process 3 until the key is not found or next is not null.
 //		Time complexity is almost constant for the put and the get method until rehashing is not done.
 //		In case of collision, i.e. index of two or more nodes are the same, nodes are joined by a link list i.e. the second node is referenced by the first node and the third by the second, and so on.
+
+	
 //		If the key given already exist in HashMap, the value is replaced with the new value.
 //		hash code of the null key is 0.
 //		When getting an object with its key, the linked list is traversed until the key matches or null is found on the next field.

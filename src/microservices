@@ -1,0 +1,22 @@
+----13. Microservices
+Microservices are the small services that work together.
+These are the services which are exposed by REST.
+The most important feature of the microservice-based architecture is that it can perform continuous delivery of a large and complex application.
+
+1. Each service single responsibility principle
+2. Independent Development and deployment
+3. Loosely coupled
+4. Independenty scalable
+
+A microservice should have the following implementations:
+
+1. Service Registry (Eureka/Consul)
+2. Fault Tolerance: (Hystrix) A->B->C agar C service fail hui toh B same error A ku nahi phekna, instead gracefully handle karna
+3. Gateway API - routing, filtering, security (Zuul)
+4. Load balancing (Ribbon)
+5. Config Server
+ 
+Monitoring (Hystrix Dashboard)
+Rest Client(Feign)
+
+Netflix Open Source Software
