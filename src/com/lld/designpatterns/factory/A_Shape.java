@@ -1,5 +1,5 @@
 package com.lld.designpatterns.factory;
 
-public interface Shape {
+public interface A_Shape {
 	public void getShape();
 }

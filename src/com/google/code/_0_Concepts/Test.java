@@ -1,6 +1,7 @@
 package com.google.code._0_Concepts;
 
 import java.util.ArrayList;
+import java.util.TreeMap;
 
 class Test {
 
@@ -15,8 +16,7 @@ class Test {
 			// empty subsequence
 			if (path.size() > 0)
 				System.out.println(path);
-		}
-		else {
+		} else {
 			// Subsequence without including
 			// the element at current index
 			printSubsequences(arr, index + 1, path);
@@ -34,6 +34,20 @@ class Test {
 		return;
 	}
 
+	public static void treeTraversal() {
+		TreeMap<Integer, String> tree_map = new TreeMap<Integer, String>();
+
+// Mapping string values to int keys
+// using put() method
+		tree_map.put(10, "Geeks");
+		tree_map.put(20, "4");
+		tree_map.put(15, "Geeks");
+		tree_map.put(12, "Welcomes");
+
+// Printing the elements of TreeMap
+		System.out.println("TreeMap: " + tree_map);
+	}
+
 //Driver code
 	public static void main(String[] args) {
 		int[] arr = { 1, 2, 3 };
@@ -42,6 +56,8 @@ class Test {
 		ArrayList<Integer> path = new ArrayList<>();
 
 		printSubsequences(arr, 0, path);
+		
+		treeTraversal();
 	}
 }
 

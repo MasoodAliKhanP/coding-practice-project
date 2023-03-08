@@ -59,11 +59,7 @@ public class _7_Successor {
 			SuccessorUtil(node.right, list);
 		}
 	}
-	
 
-	
-    
-    
 	//Solution 2
     //Take O(n) time 
     //If p.right is not null move to left of p.right

@@ -1,5 +1,5 @@
 package com.lld.designpatterns.strategy;
 
-public interface DriveStrategy {
+public interface B_DriveStrategy {
 	void drive();
 }

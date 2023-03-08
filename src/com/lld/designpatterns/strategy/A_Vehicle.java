@@ -1,8 +1,8 @@
 package com.lld.designpatterns.strategy;
 
-public class Vehicle {
-	DriveStrategy driveStrategy;
-	public Vehicle(DriveStrategy ds) {
+public class A_Vehicle {
+	B_DriveStrategy driveStrategy;
+	public A_Vehicle(B_DriveStrategy ds) {
 		this.driveStrategy = ds;
 	}
 	

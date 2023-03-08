@@ -1,6 +1,6 @@
 package com.lld.designpatterns.factory;
 
-public class Circle implements Shape {
+public class A_Circle implements A_Shape {
 
 	@Override
 	public void getShape() {

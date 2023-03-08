@@ -1,7 +1,8 @@
 ----13. Microservices
 Microservices are the small services that work together.
 These are the services which are exposed by REST.
-The most important feature of the microservice-based architecture is that it can perform continuous delivery of a large and complex application.
+The most important feature of the microservice-based architecture is that it can perform continuous
+Delivery of a large and complex application.
 
 1. Each service single responsibility principle
 2. Independent Development and deployment
@@ -19,4 +20,4 @@ A microservice should have the following implementations:
 Monitoring (Hystrix Dashboard)
 Rest Client(Feign)
 
-Netflix Open Source Software
+Netflix OSS (Open Source Software)

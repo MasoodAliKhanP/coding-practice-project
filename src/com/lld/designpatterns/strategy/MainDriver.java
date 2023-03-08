@@ -2,10 +2,10 @@ package com.lld.designpatterns.strategy;
 
 public class MainDriver {
 	public static void main(String[] args) {
-		Vehicle vh = new SportsVehicle();
+		A_Vehicle vh = new A_SportsVehicle();
 		vh.drive();
 		
-		Vehicle vh2 = new GoodsVehicle();
+		A_Vehicle vh2 = new A_GoodsVehicle();
 		vh2.drive();
 	}
 }

@@ -13,4 +13,5 @@ Saga design pattern:
  In distributed there is no roll back, but there is revert.
  
  
- How? A service is introduced, whose job is to speak to the saga controller and coordinate the job.
+ How? 
+ Ans: A new service is introduced, whose job is to speak to the saga controller and coordinate the job.
