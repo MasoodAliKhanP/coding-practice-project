@@ -1,0 +1,14 @@
+- ride sharing 		- udemy - Rider (Ride), Driver, then interface
+- snake and ladder 	- udemy, Player, Game(players, currentTurn, winner)
+- fb comments 		- udemy - User, Comment, Post
+- text pad 			- udemy, Notepad
+- book cataloge		- udemy
+
+- parking lot 		- Udit,youtube
+- ticket booking 	- Udit (Movie, Screen, Booking)
+- chess game 		- Udit
+
+
+
+ - what can we do here to tell you that things will not work this way
+ - this is what we are thinking right now 

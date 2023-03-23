@@ -193,7 +193,7 @@ patch
 
 
 500: SERVER ERROR
-502:  Bad Gateway
+502: Bad Gateway
 
 ----13. Microservices
 Microservices are the small services that work together.

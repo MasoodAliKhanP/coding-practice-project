@@ -1,0 +1,14 @@
+HLD:
+
+MYSQL VS NOSQL
+Absolutely agree with the two answers. NoSQL has matured and companies are giving up on consistency over availability, but again the basic approach of selecting any technology stays the same: "Its all as per your requirement and purpose"
+
+A. If your data requirement is to perform in isolation or is transaction based (requires high ACID compliance) - MySQL
+
+B. Anything that defines the complex relationship and needs joins - MySQL
+
+C. Ground up Solution that has potential needs of huge or unorganized data, which would eventually scale out instead of scale up - NoSQL
+
+D. Blazing fast data reads & writes - NoSQL
+
+We are currently building a product in house where we had to go through many such questions. The best solution we found was to divide our application as per our needs. For example, event logs or user behavior can be captured in NoSQL, eventually this would be used for further analysis etc.. Real world relation or accounting can be handled in MySQL.
