@@ -1,4 +1,4 @@
-Intermediate Operations:
+*******************Intermediate Operations*******************
 map: 
 The map method is used to returns a stream consisting of the results of applying the given function to the elements of this stream.
 List number = Arrays.asList(2,3,4,5);
@@ -15,7 +15,7 @@ List names = Arrays.asList("Reflection","Collection","Stream");
 List result = names.stream().sorted().collect(Collectors.toList());
 
 
-Terminal Operations:
+*******************Terminal Operations*********************
 collect: 
 The collect method is used to return the result of the intermediate operations performed on the stream.
 List number = Arrays.asList(2,3,4,5,3);
