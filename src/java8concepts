@@ -35,3 +35,19 @@ int even = number.stream().filter(x->x%2==0).reduce(0,(ans,i)-> ans+i);
 
 Here ans variable is assigned 0 as the initial value and i is added to it .
 
+************** Comparator ****************
+Comparator<Employee> comparator = Comparator.comparing(Employee::getId);	
+Comparator<Employee> comparatorTitle = (Employee e1, Employee e2) -> e1.getTitle().compareTo(e1.getTitle());
+Employee minObject = eList.stream().min(comparator).get();
+
+Comparator<Integer> integerCom = Comparator.comparing(Integer::valueOf);
+Comparator<Integer> integerCom2 = (i, j) -> Integer.compare(i, j);
+
+Integer maxNumber = Stream.of(1, 2, 3, 4, 5, 6, 7, 8, 9)
+          .max(integerCom2)
+          .get();
+ 
+Integer minNumber = Stream.of(1, 2, 3, 4, 5, 6, 7, 8, 9)
+          .min(Comparator.comparing(Integer::valueOf))
+          .get();
+		          

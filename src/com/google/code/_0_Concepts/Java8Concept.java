@@ -1,15 +1,17 @@
 package com.google.code._0_Concepts;
 
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.PriorityQueue;
 import java.util.stream.Collectors;
-
+import java.util.stream.Stream;
 
 class Product {
 	int id;
@@ -30,14 +32,27 @@ class Product {
 }
 
 
-class Employee {
+class Employee implements Comparable<Employee>{
 	int id;
 	String title;
+	Instant timeOfJoining;
 
+	public Instant getTimeOfJoining() {
+		return timeOfJoining;
+	}
+	public void setTimeOfJoining(Instant timeOfJoining) {
+		this.timeOfJoining = timeOfJoining;
+	}
 	public Employee(int id, String title) {
 		this.id = id;
 		this.title = title;
 	}
+	public Employee(int id, String title,  Instant timeOfJoining) {
+		this.id = id;
+		this.title = title;
+		this.timeOfJoining = timeOfJoining;
+	}
+	
 	public String getTitle() {
 		return title;
 	}
@@ -51,12 +66,18 @@ class Employee {
 	}
 	@Override
 	public String toString() {
-		return "Employee [id=" + id + ", title=" + title + "]";
+		return "Employee [id=" + id + ", title=" + title + ", timeOfJoining=" + timeOfJoining + "]";
+	}
+	@Override
+	public int compareTo(Employee employee) {
+		 return (int)(this.id - employee.getId());
 	}
 	
 }
 
 public class Java8Concept {
+	private static final int WEEK_SECONDS = 7 * 24* 60 * 60;
+	private static final int DAY_SECONDS = 24*60*60;
 	public static void main(String[] args) {
 //		java8GettingStarted();
 //		practice();
@@ -67,9 +88,11 @@ public class Java8Concept {
 		Employee e4 = new Employee(4, "mts");
 		employeeList.add(e1);employeeList.add(e2);employeeList.add(e3); employeeList.add(e4);
 //		practiceHashMap(employeeList);
-//		groupByJobTitle(employeeList);
-//		iterateUsingLambda();
-		priorityQueueExample();
+//		hashMapGroupByJobTitle(employeeList);
+//		hashMapIterateUsingLambda();
+//		priorityQueueExample();	
+		minMax();
+//		instantDateExample();
 	}
 
 	private static void java8GettingStarted() {
@@ -84,6 +107,17 @@ public class Java8Concept {
 		sqList.forEach(s -> System.out.print(s + " "));
 		System.out.println();
 
+		//map - total number of letters in all the names with more than 5 letters
+		List<String> strList = Stream.of("one", "two", "three").collect(Collectors.toList());
+		int totalLetters = strList.stream().filter(s -> s.length()>5).mapToInt(s -> s.length()).sum();
+		
+		//list of length of each string
+		int[] strLengths = strList.stream().mapToInt(s->s.length()).toArray();
+//		List<Integer> length =  strList.stream().map(String::length);
+		
+		//touppercase
+		List<String> toUCase = strList.stream().map(s -> s.toUpperCase()).collect(Collectors.toList());
+		
 		List<Product> productList = Arrays.asList(new Product(23, "potatoes"), new Product(14, "orange"),
 				new Product(13, "lemon"), new Product(23, "bread"), new Product(13, "sugar"));
 		List<String> proNames = productList.stream().map(p -> p.getName()).collect(Collectors.toList());
@@ -155,12 +189,16 @@ public class Java8Concept {
 		System.out.println("map group: " + resultMap);
 	}
 
-	private static void groupByJobTitle(List<Employee> employeeList) {
+	private static void hashMapGroupByJobTitle(List<Employee> employeeList) {
 		Map<String, List<Employee>> map = employeeList.stream().collect(Collectors.groupingBy(Employee::getTitle));
 		System.out.println("employee jobs" + map);
+		
+		//partitioning people by adult and non adult, reutrn map<Boolean, List<People>>
+//		people.stream() // Convert collection to Stream
+//        .collect(partitioningBy(p -> p.getAge() >= 18));
 	}
 	
-	private static void iterateUsingLambda() {
+	private static void hashMapIterateUsingLambda() {
 		Map<Character, Integer> cMap = new HashMap<>();
 		String str = "abbcaa";
 		for(Character c : str.toCharArray()) {
@@ -174,24 +212,143 @@ public class Java8Concept {
 	    );
 	}
 	
+	private static void hashMapSorting(Map<String, Employee> map) {
+		//toprint 
+		map.entrySet()
+		  .stream()
+		  .sorted(Map.Entry.comparingByKey())
+		  .forEach(System.out::println);
+		
+		map.entrySet()
+		  .stream()
+		  .sorted(Map.Entry.comparingByValue())
+		  .forEach(System.out::println);
+		
+		//tostore
+		Map<String, Employee> result = map.entrySet()
+				  .stream()
+				  .sorted(Map.Entry.comparingByValue())
+				  .collect(Collectors.toMap(
+				    Map.Entry::getKey, 
+				    Map.Entry::getValue, 
+				    (oldValue, newValue) -> oldValue, LinkedHashMap::new));
+		
+		 Map<String, Integer> unsortMap = new HashMap<>();
+	        unsortMap.put("z", 10);
+	        unsortMap.put("b", 5);
+	        unsortMap.put("a", 6);
+	        unsortMap.put("c", 20);
+	        
+	        Map<String, Integer> resultSorted = unsortMap.entrySet().stream()
+	                .sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
+	                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue,
+	                        (oldValue, newValue) -> oldValue, LinkedHashMap::new));
+
+	}
 	private static void priorityQueueExample() {
 		//default min heap
 		PriorityQueue<Integer> pq = new PriorityQueue<>();
 		pq.add(2); pq.add(10);pq.add(20);
 //		pq.forEach(e -> System.out.println(e));
 		
-		PriorityQueue<Integer> pqMax = new PriorityQueue<>((a,b)->b-a);//or (a,b) -> Integer.compare(a,b)
-		pqMax.add(2);pqMax.add(20);pqMax.add(10);
+		PriorityQueue<Integer> pqInteger = new PriorityQueue<>((a,b)->b-a);//or (a,b) -> Integer.compare(a,b)
+		pqInteger.add(2);pqInteger.add(20);pqInteger.add(10);
 //		pqMax.forEach(e -> System.out.println(e));
 		
-		
+		Comparator<Employee> byId = 
+				(Employee e1, Employee e2)->Integer.compare(e2.getId(), e1.getId());
+		PriorityQueue<Employee> pqEmployee = new PriorityQueue<>(byId);//or (a,b) -> Integer.compare(a,b)
 		Employee em1 = new Employee(1, "ceo");
 		Employee em2 = new Employee(2, "manager");
 		Employee em3 = new Employee(3, "manager");
-		Comparator<Employee> byId = 
-				(Employee e1, Employee e2)->Integer.compare(e2.getId(), e1.getId());
-		PriorityQueue<Employee> pqMax2 = new PriorityQueue<>(byId);//or (a,b) -> Integer.compare(a,b)
-		pqMax2.add(em1);pqMax2.add(em2);pqMax2.add(em3);
-		pqMax2.forEach(e -> System.out.println(e));
+		pqEmployee.add(em1);pqEmployee.add(em2);pqEmployee.add(em3);
+		
+		pqEmployee.forEach(e -> System.out.println(e));
 	}
+	
+	private static void minMax() {
+		Comparator<Integer> integerCom = Comparator.comparing(Integer::valueOf);
+		Comparator<Integer> integerCom2 = (i, j) -> Integer.compare(i, j);
+		
+		Integer maxNumber = Stream.of(1, 2, 3, 4, 5, 6, 7, 8, 9)
+		          .max(integerCom2)
+		          .get();
+		 
+		Integer minNumber = Stream.of(1, 2, 3, 4, 5, 6, 7, 8, 9)
+		          .min(Comparator.comparing(Integer::valueOf))
+		          .get();
+		
+		System.out.println("min: " + minNumber );
+		System.out.println("max: " + maxNumber);
+		
+		ArrayList<Employee> eList = new ArrayList<>();
+		Employee em1 = new Employee(1, "ceo", Instant.now().minusSeconds(DAY_SECONDS));
+		Employee em2 = new Employee(2, "manager", Instant.now().minusSeconds(2*DAY_SECONDS));
+		Employee em3 = new Employee(3, "manager", Instant.now().minusSeconds(3* DAY_SECONDS));
+		eList.add(em1);eList.add(em2);eList.add(em3);
+		
+		Comparator<Employee> comparator = Comparator.comparing(Employee::getId);	
+		Comparator<Employee> comparatorTitle = (Employee e1, Employee e2) -> e1.getTitle().compareTo(e1.getTitle());
+		
+		Employee minObject = eList.stream().min(comparator).get();
+		System.out.println("Min id employee: " + minObject);
+	}
+	
+	private static void instantDateExample() {
+		ArrayList<Employee> eList = new ArrayList<>();
+		Employee em1 = new Employee(1, "ceo", Instant.now().minusSeconds(DAY_SECONDS));
+		Employee em2 = new Employee(2, "manager", Instant.now().minusSeconds(2*DAY_SECONDS));
+		Employee em3 = new Employee(3, "manager", Instant.now().minusSeconds(3* DAY_SECONDS));
+		eList.add(em1);eList.add(em2);eList.add(em3);
+
+		Instant instant = Instant.now();
+		List<Employee> filteredEList = eList.stream()
+				.filter(e -> e.getTimeOfJoining().isAfter(instant.minusSeconds(2*DAY_SECONDS+1))).collect(Collectors.toList());
+		System.out.println(filteredEList);
+	}
+	
+	private static void flatMapExample() {
+        List<Integer> PrimeNumbers = Arrays.asList(5, 7, 11,13);
+        List<Integer> OddNumbers = Arrays.asList(1, 3, 5);
+        List<Integer> EvenNumbers = Arrays.asList(2, 4, 6, 8);
+  
+        List<List<Integer>> Ints2dList =
+                Arrays.asList(PrimeNumbers, OddNumbers, EvenNumbers);
+  
+		List<Integer> arrList = Ints2dList.stream()
+										.flatMap(list->list.stream())
+										.collect(Collectors.toList());
+		
+		 String[][] array = new String[][]{{"a", "b"}, {"c", "d"}, {"e", "f"}};
+		 String[] result = Stream.of(array)  // Stream<String[]>
+		          .flatMap(Stream::of)        // Stream<String>
+		          .toArray(String[]::new);  
+	}
+	
+	private static void optionalPractice() {
+		//Optional can help to reduce the number of null pointer exceptions in your code
+		//or example, a method that looks up a user by ID might not find a match, 
+		//in which case it would return an empty Optional.
+		
+//		 the Optional class includes methods to explicitly deal with the cases where a value is present or absent. 
+//		 However, the advantage compared to null references is that the Optional class forces you to 
+//		 think about the case when the value is not present.
+		
+		Optional<String> opt = Optional.of("java8");
+		if(opt.isPresent()) {
+			System.out.println(opt.get());
+		}
+		
+		opt.ifPresent(n -> System.out.println(n.length()));
+		
+		
+		//in case of null value
+		String nullName = null;
+	    String name = Optional.ofNullable(nullName).orElse("john");
+	    String nameGet = Optional.ofNullable(nullName).orElseGet(()->"john2");
+	    System.out.println("john: " + name + "| john2: " + nameGet);
+
+		
+	}
+	
 }
