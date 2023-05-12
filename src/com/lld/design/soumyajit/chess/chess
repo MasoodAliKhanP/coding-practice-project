@@ -1,0 +1,85 @@
+Requirements:
+Design chess game, size: 8x8, 2 players, colors black and white
+
+Objects:
+Player
+ChessBoard
+Piece
+Move
+Cell
+Chess
+
+
+Player:
+	- id
+	- name
+	- Color color
+	
+ChessBoard:
+	- int size;
+	- List<List<Cell>> board
+
+	public void resetBoard();
+	public void updateBoard(Move move);
+
+Cell: 
+	- CellPosition
+	- Piece
+	- Color
+
+enum Color{
+	BLACK, WHITE;
+}
+
+abstract class Piece: 
+	- PieceType
+	
+	- boolean movePiece(CellPosition from, CellPosition to);
+	- List<CellPositon> possibleMoves(CellPosition currentPosition);
+	- boolean validateMove(CellPosition from, CellPosition to);		
+
+enum PieceType{
+	KING, QUEEN, KNIGHT, BISHOP, ROOK, PAWN;
+}
+
+
+
+Position:
+	int row;
+	Char col;
+
+enum GameStatus{
+	ACTIVE, INACTIVE, FORFEIGHT, BLACK_WIN, WHITE_WIN;
+}
+
+Move:
+	- CellPosition startPos;
+	- CellPosition endPos;
+	- Piece piece;
+	- Piece killedPiece;
+	- Player turn;
+	
+Chess:
+	ChessBoard board;
+	GameStatus status;
+	Player[] player;
+	Player currentPlayer;
+	List<Move> movesHistory;
+	
+	public boolean playerMove(CellPosition from, CellPosition to, Piece piece);
+	public boolean endGame();
+	private void changeTurn;
+	
+	
+class King extends Piece{
+	boolean move(CellPosition from, CellPosition to);
+	List<CellPosition> possibleMoves(CellPosition currentPostion);	
+	boolean validateMove(CellPosition from);
+}
+
+Similarly for Queen, Knight, Bishop, Rook, Pawn	
+	
+	
+	
+	
+	

@@ -1,0 +1,19 @@
+Car rental:
+
+Requirements clarification:
+
+
+Objects:
+ - Customer / Tenant
+ - Owner
+ - Car
+ - Receipt / Bill
+ --------------------
+ - User / Customer
+ - Store
+ - Vehicle / Car
+ - Location
+ - Reserve
+ - Bill
+
+

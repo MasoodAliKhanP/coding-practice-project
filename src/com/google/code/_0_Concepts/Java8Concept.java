@@ -88,10 +88,11 @@ public class Java8Concept {
 		Employee e4 = new Employee(4, "mts");
 		employeeList.add(e1);employeeList.add(e2);employeeList.add(e3); employeeList.add(e4);
 //		practiceHashMap(employeeList);
-//		hashMapGroupByJobTitle(employeeList);
-//		hashMapIterateUsingLambda();
+		hashMapGroupByJobTitle(employeeList);
+		hashMapGroupByUsingComputeIf(employeeList);
+		hashMapIterateUsingLambda();
 //		priorityQueueExample();	
-		minMax();
+//		minMax();
 //		instantDateExample();
 	}
 
@@ -191,25 +192,35 @@ public class Java8Concept {
 
 	private static void hashMapGroupByJobTitle(List<Employee> employeeList) {
 		Map<String, List<Employee>> map = employeeList.stream().collect(Collectors.groupingBy(Employee::getTitle));
-		System.out.println("employee jobs" + map);
+		System.out.println("employee jobs: \n" + map);
 		
 		//partitioning people by adult and non adult, reutrn map<Boolean, List<People>>
 //		people.stream() // Convert collection to Stream
 //        .collect(partitioningBy(p -> p.getAge() >= 18));
 	}
 	
+	private static void hashMapGroupByUsingComputeIf(List<Employee> employeeList) {
+		Map<String, List<Integer>> resultMap = new HashMap<>();
+		employeeList.stream().forEach(emp -> {
+			resultMap
+			.computeIfAbsent(emp.getTitle(), k -> new ArrayList<>())
+			.add(emp.getId());
+		});
+		System.out.println("using computeifabsent: \n" + resultMap);
+	}
+	
 	private static void hashMapIterateUsingLambda() {
+		System.out.println("Iterate hash Map: ");
 		Map<Character, Integer> cMap = new HashMap<>();
 		String str = "abbcaa";
 		for(Character c : str.toCharArray()) {
 			cMap.put(c, cMap.getOrDefault(c, 0)+1);
+//			cMap.put(c, cMap.computeIfAbsent(c, v -> 0) + 1);
 		}
-	    cMap.forEach((k, v) -> {
-		    	if(v >2) {
-		    		System.out.println(k);
-		    	}
-		    }	
-	    );
+		cMap.forEach((k, v) -> {
+			System.out.println("key: " + k + " value: " + v);
+
+		});
 	}
 	
 	private static void hashMapSorting(Map<String, Employee> map) {

@@ -1,0 +1,106 @@
+https://gitlab.com/shrayansh8/interviewcodingpractise/-/tree/main/src/LowLevelDesign/LLDSnakeLadder
+
+
+Requirements:
+
+
+Objects:
+User -> select city -> Movies list -> selct movie -> list of theaters screening movie 
+-> select theater -> screens -> show time -> seat
+
+Objects:
+User:
+	- id
+	- name
+City
+	- cityName
+	
+Movie
+	- id
+	- movieName
+	- duration
+	- language
+
+Movie Controller: 
+	- Map<city, list<Movies>>
+	- list<Movies>
+	
+	- addMovie
+	- getMovie
+	- removeMovie
+	- updateMovie	
+	
+Theater
+	- id
+	- name
+	- Address
+	- list<screen>
+	- list<show> /*remember*/
+	
+Theate Controller: 
+	- Map<city, list<Theaters>>
+	- list<Theaters>
+	
+	- addTheater
+	- getTheater
+	- removeTheater
+	- updateTheater
+
+Screen:(hall)
+	- id
+	- list<Seats>
+	
+Show
+ 	- id
+ 	- Movie
+ 	- showTime
+ 	- Screen
+ 	- List<Seats> bookedSeatIds
+ 	
+Seat:
+	- id
+	- row
+	- seatType {silver, gold, platinum}
+	
+	
+	
+Booking:
+	- Show show
+	- List<Seat> seats
+	- Payment
+	
+
+MainDriver / BookMyshow:
+
+
+
+
+
+------------------------------------
+concurrency
+
+pessimistic:
+get status of seats books the seat (not good)
+
+optimistic: (version is maintained or lock status) which is updated in when enters into sync block
+ - getSeat status
+ - select seat and update (locked)
+ - syncronized method
+ - locked for 10 mins
+ - waiting for payment else release after 10 mins
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

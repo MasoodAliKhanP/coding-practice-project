@@ -1,3 +1,11 @@
+Create object only with its properties then you can have another object like item / dto of it with extended properties
+like Book then BookItem (this will extend book and will have more items)
+
+Create a class with suffix 'System' that does the business logic
+
+Avoid asking interviewer that you can add more objects.
+
+
 - ride sharing 		- udemy - Rider (Ride), Driver, then interface
 - snake and ladder 	- udemy, Player, Game(players, currentTurn, winner)
 - fb comments 		- udemy - User, Comment, Post
@@ -10,5 +18,3 @@
 
 
 
- - what can we do here to tell you that things will not work this way
- - this is what we are thinking right now 

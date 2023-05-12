@@ -1,4 +1,48 @@
+Domain Modeling is a method to describe and model entities and the relationships between them, 
+ which collectively represent the problem domain space.
+ 
+ 
+Domain-driven design (DDD) is a major software design approach,focusing on modeling software to match 
+ a domain according to input from that domain's experts.
+
+Under domain-driven design, the structure and language of software code (class names, class methods, 
+class variables) should match the business domain. For example: if software processes loan applications, 
+it might have classes like loan application, customers, and methods such as accept offer and withdraw.
+
+
 HLD:
+-- Design
+
+1. Requirement clarification
+    - Think of all the activities then ask what else to add or consider
+
+2. Estimate the scale
+     - number of tweets
+     - how much storage if photos and videos
+     - network band width - requests per second - to manage traffic - load balancing
+
+3. Expected APIs
+     - postTweet(user_id, tweet_data, tweet_location, user_location, timestamp, …)  
+
+4. Data Model
+     - Identify entities and its interaction
+        User: UserID, Name, Email, DoB, CreationDate, LastLogin, etc.
+        Tweet: TweetID, Content, TweetLocation, NumberOfLikes, TimeStamp, etc.
+        UserFollow: UserID1, UserID2
+        FavoriteTweets: UserID, TweetID, TimeStamp
+
+        Which database NoSql or MySql?
+
+
+5. Block Diagram
+    - incoming client request - api gateway - load balancer - reverse proxy - multiple instances of servers - databases - redis - file storage
+    - 
+
+6. Detailed design
+
+7. Failure points - enough replicas?
+
+
 
 MYSQL VS NOSQL
 Absolutely agree with the two answers. NoSQL has matured and companies are giving up on consistency 
@@ -23,8 +67,42 @@ For example,
 	- Real world relation or accounting can be handled in MySQL.
 	
 	
-	
+Acid properties:
 Atomicity - transaction ek saath hota ya toh ni hota
 Consistency - transaction se pehle aur uske baad db consistent rehna
 Isolation  - Ek saath kai transactions independently chalte, without interference.
 Durability - successful transaction ke changes, system failure hone ke bavajud reflect hote.
+
+
+
+Microservices design patterns:
+Decomposition - to break monolithic service in to small services
+Strangular patttern - break monolithic into small services and then slowly move traffic from moonlithic to
+new microservices - a new service receives requests and decides where to send traffic
+
+Saga pattern: 
+Micro service with common data base:
+ - problems
+ 1. if one service receives way more requests than other then scaling has to be done which applies for all
+ service. vertical scaling
+ 2. deleytion of coloum needed for one service then need to think where it breaks for other service.
+ 
+ easiness:
+ 1. transactions
+ 2. join queries
+ 
+ 
+Microservices with individual databases:
+- solved above problems but intoduces challanges of transactions and join queries
+
+transaction probolem - saga pattern
+joni queries - CQRS
+
+
+
+
+
+
+
+
+

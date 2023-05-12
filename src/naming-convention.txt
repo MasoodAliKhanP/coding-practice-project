@@ -2,22 +2,9 @@ naming convention
 extension of providers
 unit testing
 
---
-
-lld 
-hld
-
---
-improve the code base and deliver value.
-
-Test:
-MeterReadingsBuilder
- - smartMeterId
- - electricityReadings : List<ElectricityReading>
-
-
- --
- Domain-driven design is not a technology or a methodology. DDD provides a structure of practices and terminology for making design decisions that focus and accelerate software projects dealing with complicated domains.
+ Domain-driven design is not a technology or a methodology. DDD provides a structure of practices 
+ and terminology for making design decisions that focus and accelerate software projects 
+ dealing with complicated domains.
 
  domain/subject area: sales, transport, banking, games
 
@@ -41,33 +28,3 @@ MeterReadingsBuilder
  S extend T -- s
 
 
--- Design
-
-1. Requirement clarification
-    - Think of all the activities then ask what else to add or consider
-
-2. Estimate the scale
-     - number of tweets
-     - how much storage if photos and videos
-     - network band width - requests per second - to manage traffic - load balancing
-
-3. Expected APIs
-     - postTweet(user_id, tweet_data, tweet_location, user_location, timestamp, …)  
-
-4. Data Model
-     - Identify entities and its interaction
-        User: UserID, Name, Email, DoB, CreationDate, LastLogin, etc.
-        Tweet: TweetID, Content, TweetLocation, NumberOfLikes, TimeStamp, etc.
-        UserFollow: UserID1, UserID2
-        FavoriteTweets: UserID, TweetID, TimeStamp
-
-        Which database NoSql or MySql?
-
-
-5. Block Diagram
-    - incoming client request - api gateway - load balancer - reverse proxy - multiple instances of servers - databases - redis - file storage
-    - 
-
-6. Detailed design
-
-7. Failure points - enough replicas?

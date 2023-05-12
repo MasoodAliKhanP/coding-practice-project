@@ -10,7 +10,6 @@ Delivery of a large and complex application.
 4. Independenty scalable
 
 A microservice should have the following implementations:
-
 1. Service Registry (Eureka/Consul)
 2. Fault Tolerance: (Hystrix) A->B->C agar C service fail hui toh B same error A ku nahi phekna, instead gracefully handle karna
 3. Gateway API - routing, filtering, security (Zuul)

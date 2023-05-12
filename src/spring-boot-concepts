@@ -1,8 +1,13 @@
 Spring-boot-concepts:
+Java Spring Boot (Spring Boot) is a tool that accelerates and simplifies the development of 
+web applications and microservices.
+
+Spring boot Tomcat thread pool default size is 200. You can make out that different threads server 
+different requests. Put a debug point on some REST endpoint, and call it multiple times from Postman etc. 
 
 Spring container:
-The Spring container is at the core of the Spring Framework. The container will create the objects, wire them together
-, configure them, and manage their complete life cycle from creation till destruction.
+The Spring container is at the core of the Spring Framework. The container will create the objects, wire 
+them together, configure them, and manage their complete life cycle from creation till destruction.
  The Spring container uses DI to manage the components that make up an application. 
 
 ----Spring ApplicationContext
@@ -38,16 +43,11 @@ As a result, when we run this Spring Boot application, it will automatically sca
 
 
 
-
-
-
 ----2. @Component and other stereotypes
 The major difference between these stereotypes is that they are used for different classifications.
  When we annotate a class for auto-detection, we should use the respective stereotype.
 
-
-
-@Service: So overall @Service annotation is used with classes that provide some business functionalities
+@Service: @Service annotation is used with classes that provide some business functionalities
  		Spring context will autodetect these classes when annotation-based configuration and classpath scanning is used.
 @Repository Annotation is a specialization of @Component annotation which is used to indicate that the class provides the 
 			mechanism for storage, retrieval, update, delete and search operation on objects
@@ -60,7 +60,8 @@ We could use one in place of another and can still get our way around.
  
 ----3. spring vs spring-boot
 Spring Boot is built on the top of the spring and contains all the features of spring.
-Spring Boot is a microservice-based framework and making a production-ready application in it takes very little time. Following are some of the features of Spring Boot:
+Spring Boot is a microservice-based framework and making a production-ready application in it takes 
+very little time. Following are some of the features of Spring Boot:
 
 It allows avoiding heavy configuration of XML which is present in spring
 It provides easy maintenance and creation of REST endpoints
@@ -85,9 +86,6 @@ public class FooService {
     }
 }
 
-
-Please note, that since Spring 4.3 you don't even need an @Autowired on your constructor, 
-so you can write your code in Java style rather than tying to Spring's annotations. Your snippet would look like that:
 public class FooService {
     private FooFormatter fooFormatter;
     @Autowired
@@ -96,13 +94,19 @@ public class FooService {
     }
 } 
 
+Please note, that since Spring 4.3 you don't even need an @Autowired on your constructor, 
+so you can write your code in Java style rather than tying to Spring's annotation
+ Your snippet would look like that:
+
+
 which is preferred? Constructor based injection
-All Required Dependencies Are Available at Initialization Time
+All Required Dependencies Are Available at Initialization Time - it means that when instantiating the class
+	we have to provide dependencies in the constructor. As opposed to simpel new myClass(), where we are 
+	not providing any dependencies.
 Constructor injection simplifies writing unit tests
 Mockito, we can create mock objects that we can then pass into the constructor.
 
 ----5. Hibernate - 
-
 When a POJO instance is in session scope, it is said to be persistent i.e hibernate 
 detects any changes made to that object and synchronizes it with database when we close or flush the session.
 
@@ -218,7 +222,8 @@ Let's consider an API that has a rate limit of 100 requests per minute. We can c
 
 
 ----16.RabbitMQ VS Kafka
-RabbitMQ sends messages to users. These messages are removed from the queue once they are processed and acknowledged. 
+RabbitMQ sends messages to users. These messages are removed from the queue once they are processed 
+and acknowledged. 
 Kafka is a log. It uses continuous messages, which stay in the queue until the retention time expires.
 
 RabbitMQ employs the smart broker/dumb consumer model. The broker consistently delivers messages to consumers 
@@ -227,6 +232,10 @@ Kafka uses the dumb broker/smart consumer model. Kafka doesn’t monitor
 the messages each user has read. Rather, it retains unread messages only, preserving all messages
 for a set amount of time. Consumers must monitor their position in each log.
  
+Kafka has time to live for messages. They are not deleted even after consumer reads the message, because other 
+consumers might read it too. They are deleted only after time expiry.
+RabbitMQ messages are deleted as soon as consumer reads it.
+
 ----17.Custom annotations
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.Type)
@@ -238,6 +247,16 @@ public @interface JsonSerializable {
  
  
  18. Multithreading
+ Multithreading is to enhance performace
+ Spring boot Tomcat thread pool default size is 200. You can make out that different threads server 
+ different requests. Put a debug point on some REST endpoint, and call it multiple times from Postman etc.
+  From debugger, check the thread name. s.b.
+  
+ Each request is allocated a  thread. In Spring boot the rest controllers has a default singleton scope. 
+ So there is only one instance of the rest controller. The number of threads is controlled 
+ by the number of instances of dispatcher servlet.You can observer through jconsole.
  
  
-
+ 19. Solid principles
+ 
+ 20. Aspect Oriented Programming

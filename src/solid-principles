@@ -1,0 +1,30 @@
+Solid Principles: from Concept && Coding youtube channel
+
+S - Single Responsibility:
+ - A class should have only 1 reason to change
+ 	
+O - Open/Closed Principle
+ - Open for extension but closed for modification
+ 
+L - Liskov substitution
+ - If class B is subtype of class A, then we should be able to replace Object A with Object B of a class
+ 	with out breaking the behaviour of program, the output could be different.
+ 	
+I - Interface segregation
+ - Interfaces should be such that client should not implement unnessary function they do not need.
+ 
+D - Dependency Inversion (not injection)
+ - Class should depend on interfaces rather than concrete classes
+ 
+ 
+ 
+Domain Modeling is a method to describe and model entities and the relationships between them, 
+ which collectively represent the problem domain space.
+ 
+ 
+Domain-driven design (DDD) is a major software design approach,focusing on modeling software to match 
+ a domain according to input from that domain's experts.
+
+Under domain-driven design, the structure and language of software code (class names, class methods, 
+class variables) should match the business domain. For example: if software processes loan applications, 
+it might have classes like loan application, customers, and methods such as accept offer and withdraw.

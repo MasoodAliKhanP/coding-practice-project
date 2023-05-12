@@ -1,0 +1,4 @@
+Decorator Patter:
+ - To design Coffee Machine, Pizza etc
+ - Used to avoid class explosion, where we have many derived  classes.
+ - 

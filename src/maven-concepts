@@ -1,1 +1,29 @@
-Maven:
+#https://medium.com/@yetanothersoftwareengineer/maven-lifecycle-phases-plugins-and-goals-25d8e33fa22#:~:text=Lifecycle%20is%20a%20collection%20of,action%20that%20can%20be%20executed.
+
+Maven — build Lifecycles, Phases, Plugins and Goals
+
+Maven is a build and dependency management tool for software projects.
+
+3 defined life cycles:
+ - default build - (21 phases) validate -> compile -> test -> package -> integration-test -> verify -> install -> deploy.
+ - clean - (3 phases) clean
+ - site - (4 phases) site
+ 
+ phases are steps in lifycycles, executing phase means executing all previous phases
+ 
+ plugin is a collection of goals which are specific tasks contributing to building  and managing project .
+ Analogy plugin as class and goals as methods
+ 
+ to invoke a phase
+ mvn <phase-name> -> mvn compile
+ 
+ to invoke goal
+ mvn <plugin-name>:<goal-name>
+ ex: mvn eclipse:eclipse
+ 
+ Maven has plugin based architechture
+ 
+ Maven binds a lifecycle phase to plugin goal either through default plugin goals or through the user defined
+ plugin and goals declared in pom file.
+ 
+ 

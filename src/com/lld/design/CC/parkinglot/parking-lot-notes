@@ -1,0 +1,205 @@
+Requirement Gathering / Clarification:
+
+How many Entrances?
+    - 1 Entrance
+    - 1 Exit
+    - Different type of parking spots:
+        - 2 Wheeler
+        - 4 Wheeler
+    - Payment: Hourly / Minute based charge => Mix
+    - Floors? => No
+
+Objects/Models:
+
+- Vehicle
+    1 Vehicle No.
+    2 Vehicle Type (Enum)
+- Ticket
+    1. Entry Time
+    2. Parking Spot
+    3. Vehicle
+- Entrance Gate
+    1. Find Parking Space (Nearest Parking to the entrance)
+    2. Update Parking space
+    3. Generate Ticket
+- Parking Spot
+    1. id
+    2. isEmpty
+    3. Vehicle
+    4. Price
+    5. Type
+- Exit Gate
+    1. Cost Calculation
+    2. Payment
+    3. Update Parking Spot
+
+
+
+2 Approaches possible -
+    1 Top Down
+    2 Bottom Up <-
+
+Design Patterns Used: Strategy, Factory, Dependency Inversion
+
+Vehicle
+_________
+vehicleNo: String
+vehicleType: VehicleType
+
+______________________________________________________________________
+
+<< General Class >>
+Parking Spot (has-a vehicle)
+__________________
+id: Int
+isEmpty: Boolean
+vehicle: Vehicle
+price: Int
+___________________
+parkVehicle(vehicle)
+removeVehicle(vehicle)
+____________________
+
+(is-a parking spot)     (is-a parking spot)
+TwoWheelerSpot          FourWheelerSpot
+Price() { 10 }          Price() {20}
+
+
+ParkingSpotManager (has-a parking spot)
+_____________________________________
+list: List<ParkingSpot>
+_____________________________________
+PSManager(list: List<ParkingSpot>) {
+    this.list = list
+}
+findParkingSpace() => (has-a parking strategy)
+addParkingSpace()
+removeParkingSpace()
+parkVehicle(vehicle)
+removeVehicle(vehicle)
+
+(is-a parking spot manager)         (is-a parking spot manager)
+TwoWheelerManager                   FourWheelerManager
+_________________________         __________________________
+list: List<ParkingSpot>             list: List<ParkingSpot>
+_________________________         __________________________
+TwoWheelerManager() {               FourWheelerManager() {
+    super(list)                         super(list)
+}                                   }
+
+Parking Strategy
+
+NearToEntrance                                  NearToEntranceAndElevator       default
+____________                                  _______________________       ____________
+find()                                          find()
+// Can use a min-heap for each Entrance
+E1 - minHeap
+E2 - minHeap
+.
+.
+En - minHeap
+
+ParkingSpotManagerFactory (has-a ParkingSpotManager)
+____________________________________________
+getParkingSpotManager(vehicle): ParkingSpotManager {
+    vehicleType Basis
+        return PSM Object
+}
+______________________________________________________________________
+
+Ticket (has-a vehicle, parking spot)
+_____________
+entryTime: Long
+vehicle: Vehicle
+parkingSpot: ParkingSpot
+// Getters & Setters
+________________________________________________________________________
+
+EntranceGate (has-a ParkingSpotManagerFactory, Ticket)
+____________________________________________________
+factory: ParkingSpotManagerFactory
+parkingSpaceManager: ParkingSpaceManager
+ticket: Ticket
+findParkingSpace() {
+    factory(vehicleType).findParkingSpace()
+}
+bookSpot(vehicle): ParkingSpot
+generateTicket(vehicle, parkingSpot)
+
+________________________________________________________________________
+
+ExitGate
+_________________________________
+paymentMethod: String
+parkingSpotManagerFactory: ParkingSpotManager
+ticket: Ticket
+costComputationFactory: CostComputationFactory
+paymentFactory: PaymentFactory
+_________________________________
+priceCalculation() {
+    amount = costComputationFactory.getCostComputation(ticket).price()
+}
+makePayment() {
+    paymentFactory.getPaymentMethod(paymentMethod).makePayment(amount)
+}
+removeVehicle() {
+    parkingSpotManagerFactory.getParkingSpotManager(ticket.vehicle).removeVehicle(ticket.vehicle)
+}
+
+CostComputationFactory
+____________________
+getCostComputation(ticket) {
+    ticket.vehicle.vehicleType basis
+        return CostComputation Obj // (Two/Four Wheeler)
+}
+
+CostComputation (has-a Pricing Strategy)
+_____________________________
+pricingStrategy: PricingStrategy
+price(ticket) {
+    pricingStrategy.price(ticket)
+}
+
+TwoWheelerCostComputation                       FourWheelerCostComputation
+________________________                      _________________________
+TwoWheelerCostComputation() {                   FourWheelerCostComputation() {
+    super(Hourly())                                 super(Minute())
+}                                               }
+
+PricingStrategy
+
+Default                                 Hourly                                      MinuteBasis
+_____________                         ________                                  ____________
+price(ticket) {                         price(ticket) {                             price(ticket) {
+    return parkingSpot.price                hours = currTimeH - ticket.etH              minutes = currTimeM - ticket.etM
+}                                           hours*parkingSpot.price                     minutes*parkingSpot.price
+                                        }                                           }
+
+PaymentFactory
+____________________
+getPayment(paymentMethod) {
+    paymentMethod basis
+        return Payment Obj // (Cash/Card/UPI)
+}
+
+Payment
+_______________________________
+paymentStrategy: PaymentStrategy
+_______________________________
+makePayment(amount) {
+    paymentStrategy.makePayment(amount)
+}
+
+CardPayment                             CashPayment
+_________________                     _______________
+CardPayment() {                         CashPayment() {
+    super(Card())                          super(Cash())
+}                                       }
+
+PaymentStrategy
+
+Default                                 Cash                                        Card
+_____________                         ________                                  ____________
+makePayment(amount) {                   makePayment(amount) {                       makePayment(amount) {
+    // save in cash table                   // save in cash table                       // save in card table
+}                                       }                                           }

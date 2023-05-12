@@ -47,18 +47,20 @@ public class _1_HashMapWorking {
 //		Hashing
 //		Hashing is a process of converting an object into integer form by using the method hashCode()
 //
-//		hashCode() method: hashCode() method is used to get the hash code of an object. hashCode() method of the object class returns the memory reference of an object in integer form
+//		hashCode() method: hashCode() method is used to get the hash code of an object. hashCode() 
+//  	method of the object class returns the memory reference of an object in integer form
 //
 //
 //		equals() method: This method is used to check whether 2 objects are equal or not. 
 //
-//		Buckets: A bucket is an element of the HashMap array. It is used to store nodes. Two or more nodes can have the same bucket. 
-//		capacity = number of buckets * load factor
+//		Buckets: A bucket is an element of the HashMap array. It is used to store nodes. Two or more nodes
+//  	can have the same bucket. capacity = number of buckets * load factor
 //
 //
 //		Index Calculation in Hashmap
 //		The Hash code of the key may be large enough to create an array. 
 //		index = hashCode(key) & (n-1).
+//		or index = hash % sizeOfHashMap
 //
 //
 //
