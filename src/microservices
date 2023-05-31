@@ -5,8 +5,8 @@ The most important feature of the microservice-based architecture is that it can
 Delivery of a large and complex application.
 
 1. Each service single responsibility principle
-2. Independent Development and deployment
-3. Loosely coupled
+2. Loosely coupled
+3. Independent Development and deployment
 4. Independenty scalable
 
 A microservice should have the following implementations:
@@ -19,4 +19,5 @@ A microservice should have the following implementations:
 Monitoring (Hystrix Dashboard)
 Rest Client(Feign)
 
+spring-boot-actuator to monitor and manage applictaion.
 Netflix OSS (Open Source Software)

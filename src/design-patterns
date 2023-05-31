@@ -2,17 +2,22 @@ Factory
 Abstract Factory - Factory of factory
 Strategy
 Observer
-decorator
-
+Decorator
+Proxy
+Adaptor
 
 Microservices:
 Saga design pattern:
  - Distributed transaction, a transaction that spans across multiple services. Each part of transaction is handled 
  by a dedicated micro-service for instance, order service, payment service, delivery service etc. 
  Saga design pattern is used handle if a failure occurs in any one of these services.
- CREATES FAILURE FLOW
- In distributed there is no roll back, but there is revert.
+ 
  
  
  How? 
- Ans: A new service is introduced, whose job is to speak to the saga controller and coordinate the job.
+ Ans: 
+ CREATES FAILURE FLOW - service publishes failure event, which is picked by intended service 
+ and reverts the transaction.s
+ In distributed there is no roll back, but there is revert.
+ 
+ A new service is introduced, whose job is to speak to the saga controller and coordinate the job.

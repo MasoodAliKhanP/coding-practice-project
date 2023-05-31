@@ -1,4 +1,4 @@
-package com.lld.design.udemy.ride;
+package com.lld.design.udemy.rideShare;
 
 import java.util.List;
 
@@ -23,9 +23,11 @@ public class RideShareSystem {
 			if(rider.getId() == riderId) {
 				rider.createRide(rideId, origin, destination, seats);
 				drivers--;
-				break;
+				return;
 			}
 		}
+		
+		System.out.println("Invalid riderId.");
 	}
 	
 	void updateRide (int riderId, int rideId, int origin, int destination, int seats){

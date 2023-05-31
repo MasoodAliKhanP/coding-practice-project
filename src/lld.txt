@@ -8,6 +8,7 @@ Avoid asking interviewer that you can add more objects.
 
 - ride sharing 		- udemy - Rider (Ride), Driver, then interface
 - snake and ladder 	- udemy, Player, Game(players, currentTurn, winner)
+- meeting scheduler - udemy
 - fb comments 		- udemy - User, Comment, Post
 - text pad 			- udemy, Notepad
 - book cataloge		- udemy

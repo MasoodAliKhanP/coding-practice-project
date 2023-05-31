@@ -38,6 +38,7 @@ public class ComparatorTest {
 
         System.out.println(intList);
 
+//        Collections.sort(intList, (a, b)-> Integer.compare(a, b));
         Collections.sort(intList, new Comparator<Object>() {
             @Override
             public int compare(Object o1, Object o2) {

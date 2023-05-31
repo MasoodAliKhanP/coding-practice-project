@@ -1,4 +1,4 @@
-package com.google.code._9_Sorting;
+package com.google.code._2_Sorting;
 
 public class _1_NumerRepeatedTwice {
 	public static void main(String[] args) {

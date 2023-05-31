@@ -2,12 +2,12 @@ Requirements:
 Design chess game, size: 8x8, 2 players, colors black and white
 
 Objects:
-Player
-ChessBoard
-Piece
-Move
-Cell
-Chess
+	Player
+	ChessBoard
+	Piece
+	Move
+	Cell
+	ChessGame
 
 
 Player:
@@ -31,7 +31,7 @@ enum Color{
 	BLACK, WHITE;
 }
 
-abstract class Piece: 
+Piece: abstract class 
 	- PieceType
 	
 	- boolean movePiece(CellPosition from, CellPosition to);
@@ -59,16 +59,27 @@ Move:
 	- Piece killedPiece;
 	- Player turn;
 	
-Chess:
+ChessGame:
 	ChessBoard board;
 	GameStatus status;
-	Player[] player;
+	Queue<Player> playerTurnQueue;
 	Player currentPlayer;
 	List<Move> movesHistory;
 	
+	public boolean playGame()
+		- fetch  player from queue, call change turn
+		- select a random piece / take input from scanner
+		- find possible move
+		- move
+		- perhaps validate move
+		- check for kill
+		- update board
+		- check for win etc then endgame
+		
+		
 	public boolean playerMove(CellPosition from, CellPosition to, Piece piece);
 	public boolean endGame();
-	private void changeTurn;
+	private void changeTurn();
 	
 	
 class King extends Piece{

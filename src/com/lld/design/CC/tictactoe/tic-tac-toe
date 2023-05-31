@@ -1,0 +1,46 @@
+https://gitlab.com/shrayansh8/interviewcodingpractise/-/blob/main/src/LowLevelDesign/LLDTicTacToe/Model/Board.java
+
+
+
+Objects:
+Player
+	name
+	PlayingPiece
+		
+PlayingPiece 
+	- pieceType
+	
+PlayingPieceX extends PlayingPiece
+	-Initialize wity X
+	
+PlayingPieceO extends PlayingPiece
+	-Initialize wity O
+	
+PieceType {enum X, O)
+
+
+Board
+	PlayingPiece[][] board;
+	int size;
+	 - List<Pair<Integer, Integer>> getFreeCells
+	 	for(row col) if(board[i][j] == null) add to list
+	 	return list
+	
+Game
+	Queue<Player> playerTurnQueue;
+	Board board;
+	- void initializeGame() -> AddPlayersToQueue, Board(3)
+	- playGame() 
+		get player
+		getFree cells -> if lst empty -> no winner
+		choose one random cell from list (or take input i,j from prompt) and add Playing Piece
+		add player back to queue
+		check for win
+		
+	
+	
+	
+	
+	
+	
+	

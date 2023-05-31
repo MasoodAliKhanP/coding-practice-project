@@ -1,4 +1,4 @@
-package com.lld.design.udemy.ride;
+package com.lld.design.udemy.rideShare;
 
 import java.util.ArrayList;
 import java.util.List;

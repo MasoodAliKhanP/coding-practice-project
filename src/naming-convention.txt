@@ -12,7 +12,7 @@ unit testing
  oops - apie
  abstraction - dealing with interface`
  polymorphism - method overloadign, overriding
- inheritance
+ inheritance	- extends
  encapsulation - wrapping data and methods in a class
 
  --

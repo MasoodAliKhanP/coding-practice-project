@@ -2,7 +2,8 @@ Solid Principles: from Concept && Coding youtube channel
 
 S - Single Responsibility:
  - A class should have only 1 reason to change
- 	
+  - class, module, or function in a program should have one responsibility/purpose in a program.
+
 O - Open/Closed Principle
  - Open for extension but closed for modification
  
@@ -16,6 +17,11 @@ I - Interface segregation
 D - Dependency Inversion (not injection)
  - Class should depend on interfaces rather than concrete classes
  
+dry - dont repeat your self
+kis - keep it simple (do not complicate, divide the functions)
+yagni - If (you aren't gonna need it) dont implement it
+
+
  
  
 Domain Modeling is a method to describe and model entities and the relationships between them, 

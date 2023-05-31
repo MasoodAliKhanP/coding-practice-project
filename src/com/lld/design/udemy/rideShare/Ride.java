@@ -1,4 +1,4 @@
-package com.lld.design.udemy.ride;
+package com.lld.design.udemy.rideShare;
 
 public class Ride {
 	static final int AMT_PER_KM = 20;

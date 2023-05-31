@@ -1,2 +1,28 @@
-Notes related  to my projects in Techmojo, Securifi:
+Notes related  to my projects in Techmojo, Securifi, Paysafe:
 
+ - scrach card , prize on next deposit
+ - jackpot feature - money pooling and randomized algo
+ - chat application - slow chat - chat history indexing  and trimming
+ 					- too many open files
+ 					- tuned system parameters (increase file count, socket count, max file descriptors etc check it)
+ - connecpay - apigee api gateway
+ 				- complyAdv - softstop hard stop
+ 				
+ 
+ 
+Scratch Card: 
+3rd party -> maintain wallets
+
+user deposits -> [gaming website] -> [3rd party]
+
+
+[3rd party] -> webhook call -> [ngixn] -> [scractch card service]
+
+-> generates scratch card -> infrom about sc
+
+
+-> if sc already exists -> make a call to 3rd party to claim cash back
+
+
+player_deposit
+transactionId, palyerid, depositamount, timestamp etc.

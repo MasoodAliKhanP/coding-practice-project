@@ -94,6 +94,7 @@ public class Java8Concept {
 //		priorityQueueExample();	
 //		minMax();
 //		instantDateExample();
+		productMapTest();
 	}
 
 	private static void java8GettingStarted() {
@@ -110,22 +111,26 @@ public class Java8Concept {
 
 		//map - total number of letters in all the names with more than 5 letters
 		List<String> strList = Stream.of("one", "two", "three").collect(Collectors.toList());
-		int totalLetters = strList.stream().filter(s -> s.length()>5).mapToInt(s -> s.length()).sum();
+		int totalLetters = strList.stream()
+				.filter(s -> s.length()>5)
+				.mapToInt(s -> s.length()).sum();
 		
 		//list of length of each string
 		int[] strLengths = strList.stream().mapToInt(s->s.length()).toArray();
-//		List<Integer> length =  strList.stream().map(String::length);
+//		List<Integer> length =  strList.stream().map(String::length).collect(Collectors.toList());
 		
 		//touppercase
 		List<String> toUCase = strList.stream().map(s -> s.toUpperCase()).collect(Collectors.toList());
 		
 		List<Product> productList = Arrays.asList(new Product(23, "potatoes"), new Product(14, "orange"),
 				new Product(13, "lemon"), new Product(23, "bread"), new Product(13, "sugar"));
-		List<String> proNames = productList.stream().map(p -> p.getName()).collect(Collectors.toList());
+		List<String> proNames = productList.stream()
+				.map(p -> p.getName()).collect(Collectors.toList());
 		proNames.forEach(n -> System.out.println(n));
 
 		// toMap
-		Map<String, Integer> map = list.stream().collect(Collectors.toMap(i -> i.toString(), i -> i * i));
+		Map<String, Integer> map = list.stream()
+									   .collect(Collectors.toMap(i -> i.toString(), i -> i * i));
 		System.out.println(map);
 
 		// flatmap to convert 2d array to 1d
@@ -139,7 +144,6 @@ public class Java8Concept {
 		List<String> blist = Arrays.asList("Reflection", "Collection", "Stream");
 		List<String> newBList = blist.stream().sorted((a, b) -> a.compareTo(b)).collect(Collectors.toList());
 		newBList.forEach(s -> System.out.println(s));
-
 		// Terminal Ops
 		// 4.collect
 		// 5.forEach
@@ -179,6 +183,7 @@ public class Java8Concept {
 	}
 
 	private static void practiceHashMap(List<Employee> employeeList) {
+		
 		// traditional way
 		Map<String, List<Employee>> resultMap = new HashMap<>();
 		for (int i = 0; i < employeeList.size(); i++) {
@@ -252,8 +257,10 @@ public class Java8Concept {
 	        
 	        Map<String, Integer> resultSorted = unsortMap.entrySet().stream()
 	                .sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
-	                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue,
-	                        (oldValue, newValue) -> oldValue, LinkedHashMap::new));
+	                .collect(Collectors.toMap(Map.Entry::getKey, 
+				                		Map.Entry::getValue,
+				                        (oldValue, newValue) -> oldValue, 
+				                        LinkedHashMap::new));
 
 	}
 	private static void priorityQueueExample() {
@@ -360,6 +367,16 @@ public class Java8Concept {
 	    System.out.println("john: " + name + "| john2: " + nameGet);
 
 		
+	}
+	
+	
+	private static void productMapTest() {
+		Map<Product, Integer> pMap = new HashMap<>();
+		Product p1 = new Product(1, "glass");
+		pMap.put(p1, 10);
+		pMap.put(new Product(2, "wood"), 20);
+		
+		System.out.println("value: " + pMap.get(p1));
 	}
 	
 }

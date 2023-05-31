@@ -2,7 +2,7 @@ Spring-boot-concepts:
 Java Spring Boot (Spring Boot) is a tool that accelerates and simplifies the development of 
 web applications and microservices.
 
-Spring boot Tomcat thread pool default size is 200. You can make out that different threads server 
+Spring boot Tomcat thread pool default size is 200. You can make out that different threads serve
 different requests. Put a debug point on some REST endpoint, and call it multiple times from Postman etc. 
 
 Spring container:
@@ -44,8 +44,9 @@ As a result, when we run this Spring Boot application, it will automatically sca
 
 
 ----2. @Component and other stereotypes
+A widely held but fixed and oversimplified image or idea of a particular type of person or thing.
 The major difference between these stereotypes is that they are used for different classifications.
- When we annotate a class for auto-detection, we should use the respective stereotype.
+When we annotate a class for auto-detection, we should use the respective stereotype.
 
 @Service: @Service annotation is used with classes that provide some business functionalities
  		Spring context will autodetect these classes when annotation-based configuration and classpath scanning is used.
@@ -194,10 +195,10 @@ patch
 403: Forbidden - The client does not have access rights to the content;the server is refusing to give the requested resource
 404: RESOURCE NOT FOUND - this can also mean that the endpoint is valid but the resource itself does not exist.
 405: METHOD NOT ALLOWED - For example, an API may not allow calling DELETE to remove a resource
+429: TOO MANY REQUESTS response status code indicates the user has sent too many requests in a given amount of time ("rate limiting").
 
-
-500: SERVER ERROR
-502: Bad Gateway
+500: INTERNAL SERVER ERROR
+502: Bad Gateway - The HyperText Transfer Protocol (HTTP) 502 Bad Gateway server error response code indicates that the server, while acting as a gateway or proxy, received an invalid response from the upstream server
 
 ----13. Microservices
 Microservices are the small services that work together.

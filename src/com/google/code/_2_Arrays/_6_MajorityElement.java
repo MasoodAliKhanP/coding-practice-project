@@ -2,9 +2,13 @@ package com.google.code._2_Arrays;
 
 public class _6_MajorityElement {
 	public static void main(String[] args) {
-		int[] arr = {2,2,3,1,2,2,1,2};
-		findNby3Majority(arr);
-		findNby2Majority(arr);
+//		int[] arr = {2,2,3,1,2,2,1,2};
+//		findNby3Majority(arr);
+//		findNby2Majority(arr);
+		
+		String str = String.valueOf("*.121");
+		str = str.replace("*", ".*");
+		System.out.println("12.2.3.121".matches(str));
 	}
 
 //	O(Nlogk), space O(k)

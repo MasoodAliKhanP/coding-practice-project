@@ -11,6 +11,7 @@ public class B_MessageAlertObserverImpl implements B_NotificationObserver{
 	
 	@Override
 	public void update() {
+		//more information can be fetched from stockObservable
 		sendMessage();
 	}
 	

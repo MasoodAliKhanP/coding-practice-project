@@ -3,7 +3,7 @@ Domain Modeling is a method to describe and model entities and the relationships
  
  
 Domain-driven design (DDD) is a major software design approach,focusing on modeling software to match 
- a domain according to input from that domain's experts.
+ a domain according to input from that domain's experts (Domain Expert).
 
 Under domain-driven design, the structure and language of software code (class names, class methods, 
 class variables) should match the business domain. For example: if software processes loan applications, 
@@ -16,7 +16,7 @@ HLD:
 1. Requirement clarification
     - Think of all the activities then ask what else to add or consider
 
-2. Estimate the scale
+2. Estimate the scale / back of envelope calculation
      - number of tweets
      - how much storage if photos and videos
      - network band width - requests per second - to manage traffic - load balancing
@@ -35,9 +35,11 @@ HLD:
 
 
 5. Block Diagram
-    - incoming client request - api gateway - load balancer - reverse proxy - multiple instances of servers - databases - redis - file storage
-    - 
-
+    - incoming client request - api gateway - load balancer - reverse proxy - Multiple data centers - databases - file storage
+    - 																					|
+    																		multiple instances of servers
+																						|
+																					cache(redis etc).												
 6. Detailed design
 
 7. Failure points - enough replicas?
@@ -52,7 +54,7 @@ your requirement and purpose"
 A. If your data requirement is to perform in isolation or is transaction based (requires high ACID compliance) - MySQL
 	-The property of isolation ensures that when we execute the transactions concurrently, it will result in 
 	 such a state that's equivalent to the achieved state that was serially executed in a particular order.
-B. Anything that defines the complex relationship and needs joins - MySQL
+B. Anything that defines the complex relationship (parent child) and needs joins - MySQL
 
 C. Ground up Solution that has potential needs of huge or unorganized data, which would eventually 
 scale out instead of scale up - NoSQL (Horizontal scaling)

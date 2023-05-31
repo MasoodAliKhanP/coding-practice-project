@@ -4,8 +4,64 @@ https://gitlab.com/shrayansh8/interviewcodingpractise/-/tree/main/src/LowLevelDe
 Requirements:
 
 Objects:
+
+Game: 
+	- Board board
+	- Player winner
+	- Dice dice
+	- Queue<Player> PlayerTurnQueue;
+	
+	- constructor -> initialize game, add players
+	- playerGame
+		while(winner == null)
+			getPlyaerfromQueue
+			rollDice
+			get new position by adding  dice count to current player positon 
+			if new position is > size * size return winner
+			else check if playerposition has jump then get new player position 
+			continue
+	
 Board
+	- size
+	- Cell[][] cells;
+	- int snakes, int ladders
+	- Board(size, snakes, ladder)
+	- initializeBoard() 
+		-> initaize size*size empty cells
+		-> generate random numbers start, end. create Jump Object. check if start < end for ladder
+			and start > end for snake
+	- getCell(int playerPosition)
 Cell
-(Snake, Ladder) -> jump
+	- jump
+Jump
+	- int start
+	- int end
 Player
+	- name, int currentPosition
+	
 Dice
+	- min, max, diceCount
+	- int rollDice();
+
+
+//insersnake
+generate 2 random numbers
+return if min is greater than max
+
+create jum with start max and end min
+
+insert jump snake in to cell, get cell from 2d array with row = max/10 col = max %10
+return cell[row][col]
+
+cell.jump = new jump;
+
+num of snake--;
+
+
+Game:
+ - board
+ - dice
+ - player winner
+ - queue //player turn remove from front and put back
+ 
+ 
