@@ -87,14 +87,13 @@ public class Java8Concept {
 		Employee e3 = new Employee(3, "manager");
 		Employee e4 = new Employee(4, "mts");
 		employeeList.add(e1);employeeList.add(e2);employeeList.add(e3); employeeList.add(e4);
-//		practiceHashMap(employeeList);
 		hashMapGroupByJobTitle(employeeList);
-		hashMapGroupByUsingComputeIf(employeeList);
-		hashMapIterateUsingLambda();
+//		hashMapGroupByUsingComputeIf(employeeList);
+//		hashMapIterateUsingLambda();
 //		priorityQueueExample();	
 //		minMax();
 //		instantDateExample();
-		productMapTest();
+//		productMapTest();
 	}
 
 	private static void java8GettingStarted() {
@@ -182,8 +181,7 @@ public class Java8Concept {
 		System.out.println("pSum: " + psum);
 	}
 
-	private static void practiceHashMap(List<Employee> employeeList) {
-		
+	private static void hashMapGroupByJobTitle(List<Employee> employeeList) {
 		// traditional way
 		Map<String, List<Employee>> resultMap = new HashMap<>();
 		for (int i = 0; i < employeeList.size(); i++) {
@@ -193,11 +191,19 @@ public class Java8Concept {
 			resultMap.put(employee.getTitle(), employeeSubList);
 		}
 		System.out.println("map group: " + resultMap);
-	}
-
-	private static void hashMapGroupByJobTitle(List<Employee> employeeList) {
+		
+		//streams	
 		Map<String, List<Employee>> map = employeeList.stream().collect(Collectors.groupingBy(Employee::getTitle));
 		System.out.println("employee jobs: \n" + map);
+		
+		//using computeIfAbsent {title, ListOfIds}
+		Map<String, List<Integer>> rMap = new HashMap<>();
+		employeeList.stream().forEach(emp -> {
+			rMap
+			.computeIfAbsent(emp.getTitle(), k -> new ArrayList<>())
+			.add(emp.getId());
+		});
+		System.out.println("using computeifabsent: \n" + rMap);
 		
 		//partitioning people by adult and non adult, reutrn map<Boolean, List<People>>
 //		people.stream() // Convert collection to Stream
@@ -205,13 +211,7 @@ public class Java8Concept {
 	}
 	
 	private static void hashMapGroupByUsingComputeIf(List<Employee> employeeList) {
-		Map<String, List<Integer>> resultMap = new HashMap<>();
-		employeeList.stream().forEach(emp -> {
-			resultMap
-			.computeIfAbsent(emp.getTitle(), k -> new ArrayList<>())
-			.add(emp.getId());
-		});
-		System.out.println("using computeifabsent: \n" + resultMap);
+		
 	}
 	
 	private static void hashMapIterateUsingLambda() {

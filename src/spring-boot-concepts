@@ -202,7 +202,7 @@ patch
 
 ----13. Microservices
 Microservices are the small services that work together.
-These are the services which are exposed by REST.
+These are the services which are exposed by REST endpoints.
 The most important feature of the microservice-based architecture is that it can perform continuous delivery of a large and complex application.
 
 

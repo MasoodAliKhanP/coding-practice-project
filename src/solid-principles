@@ -33,4 +33,12 @@ Domain-driven design (DDD) is a major software design approach,focusing on model
 
 Under domain-driven design, the structure and language of software code (class names, class methods, 
 class variables) should match the business domain. For example: if software processes loan applications, 
-it might have classes like loan application, customers, and methods such as accept offer and withdraw.
+it might have classes like loan application, customers, and methods such as accept offer and withdraw
+
+
+
+
+
+
+
+

@@ -77,33 +77,6 @@ Durability - successful transaction ke changes, system failure hone ke bavajud r
 
 
 
-Microservices design patterns:
-Decomposition - to break monolithic service in to small services
-Strangular patttern - break monolithic into small services and then slowly move traffic from moonlithic to
-new microservices - a new service receives requests and decides where to send traffic
-
-Saga pattern: 
-Micro service with common data base:
- - problems
- 1. if one service receives way more requests than other then scaling has to be done which applies for all
- service. vertical scaling
- 2. deleytion of coloum needed for one service then need to think where it breaks for other service.
- 
- easiness:
- 1. transactions
- 2. join queries
- 
- 
-Microservices with individual databases:
-- solved above problems but intoduces challanges of transactions and join queries
-
-transaction probolem - saga pattern
-joni queries - CQRS
-
-
-
-
-
 
 
 

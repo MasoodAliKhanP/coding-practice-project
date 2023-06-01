@@ -11,7 +11,7 @@ kafka server = kafka broker = kafka node
 Cluster has multiple brokers, one acts as leader and others are followers (replication sets). 
 Leader handles writes and followers read
 
-no kafka server can run withotu zookeeper
+no kafka server can run without zookeeper
 
 zookeeper to manager multiple kafka brokers
 
@@ -22,7 +22,7 @@ $ bin/kafka-server-start.sh config/server.properties (only starts single broker)
 then start this service
 
 
-----16.RabbitMQ VS Kafka
+RabbitMQ VS Kafka:
 RabbitMQ sends messages to users. These messages are removed from the queue once they are processed and acknowledged. 
 Kafka is a log. It uses continuous messages, which stay in the queue until the retention time expires.
 
@@ -31,5 +31,9 @@ and keeps track of their status.
 Kafka uses the dumb broker/smart consumer model. Kafka doesn’t monitor
 the messages each user has read. Rather, it retains unread messages only, preserving all messages
 for a set amount of time. Consumers must monitor their position in each log.
+ 
+ 
+ 
+ 
  
  
