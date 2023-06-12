@@ -1,4 +1,4 @@
-package com.google.code._2_Searching;
+package com.google.code._2_Sorting;
 
 /* Magic number : A[i] == i, array is sorted */
 public class _2_SortingAlgos {

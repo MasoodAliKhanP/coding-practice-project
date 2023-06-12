@@ -5,7 +5,7 @@ web applications and microservices.
 Spring boot Tomcat thread pool default size is 200. You can make out that different threads serve
 different requests. Put a debug point on some REST endpoint, and call it multiple times from Postman etc. 
 
-Spring container:
+1. Spring container:
 The Spring container is at the core of the Spring Framework. The container will create the objects, wire 
 them together, configure them, and manage their complete life cycle from creation till destruction.
  The Spring container uses DI to manage the components that make up an application. 
@@ -37,9 +37,9 @@ This annotation combines:
 	   - web controller classes and other components you create will be automatically discovered and 
 	   	registered as beans in Spring's Application Context
 
-As a result, when we run this Spring Boot application, it will automatically scan the components
- in the current package and its sub-packages. Thus it will register them in Spring's Application Context, 
- and allow us to inject beans using @Autowired.
+	As a result, when we run this Spring Boot application, it will automatically scan the components
+	in the current package and its sub-packages. Thus it will register them in Spring's Application Context, 
+	and allow us to inject beans using @Autowired.
 
 
 
@@ -187,7 +187,8 @@ patch
 204: No Content
 
 300 Multiple Choices
-301 Moved Permanently - The URL of the requested resource has been changed permanently. The new URL is given in the response.
+301 Moved Permanently - The URL of the requested resource has been changed permanently. 
+			The new URL is given in the response.
 302 Found
 
 400: BAD REQUEST  - malformed request syntax etc.
@@ -239,14 +240,49 @@ RabbitMQ messages are deleted as soon as consumer reads it.
 
 ----17.Custom annotations
 @Retention(RetentionPolicy.RUNTIME)
-@Target(ElementType.Type)
-public @interface JsonSerializable {
+@Target(ElementType.METHOD)
+public @interface CustomAnnotation {
+    String role() default "";
 }
 
+public class ExampleClass {
+    @CustomAnnotation(role = "admin")
+    public void performAdminAction() {
+        // Code for performing admin action
+    }
 
- 
- 
- 
+    @CustomAnnotation(role = "user")
+    public void performUserAction() {
+        // Code for performing user action
+    }
+}
+
+Using reflection to access custom annotation
+import java.lang.reflect.Method;
+public class Main {
+    public static void main(String[] args) {
+        ExampleClass example = new ExampleClass();
+        Class<?> cls = example.getClass();
+        
+        Method[] methods = cls.getMethods();
+        for (Method method : methods) {
+            if (method.isAnnotationPresent(CustomAnnotation.class)) {
+                CustomAnnotation annotation = method.getAnnotation(CustomAnnotation.class);
+                String role = annotation.role();
+                
+                // Perform actions based on the role
+                if (role.equals("admin")) {
+                    System.out.println("Admin action allowed.");
+                    // Perform admin action
+                } else if (role.equals("user")) {
+                    System.out.println("User action allowed.");
+                    // Perform user action
+                }
+            }
+        }
+    }
+}
+
  18. Multithreading
  Multithreading is to enhance performace
  Spring boot Tomcat thread pool default size is 200. You can make out that different threads server 
@@ -258,6 +294,256 @@ public @interface JsonSerializable {
  by the number of instances of dispatcher servlet.You can observer through jconsole.
  
  
- 19. Solid principles
+ 19. Log management in distributed systems
+ push logs to centralized system like logstash and splunk
+ Logstash and Splunk can be categorized as "Log Management" tools.
+	1. Use a correlation ID
+	2. Structure logs appropriately
+	3. Provide informative application logs
+	4. Visualize log data (Kibana)
+	5. Use centralized log storage (logstash, splunk, loggly etc.)
+	6. query logs (elk stack)
+	
+ 
+ 
  
  20. Aspect Oriented Programming
+ Suppose you have a simple Java application that performs various database operations. 
+ You want to log the time taken by each database operation without modifying the existing codebase. 
+ This logging behavior is a cross-cutting concern that affects multiple methods or classes.
+ 
+ With AspectJ, you can define an aspect that encapsulates the logging behavior and apply 
+ it to the relevant methods or classes. Here's an example:
+ 
+		import org.aspectj.lang.JoinPoint;
+		import org.aspectj.lang.annotation.Aspect;
+		import org.aspectj.lang.annotation.Before;
+		
+		@Aspect
+		public class LoggingAspect {
+		
+		    @Before("execution(* com.example.database.*.*(..))")
+		    public void logExecutionTime(JoinPoint joinPoint) {
+		        String methodName = joinPoint.getSignature().getName();
+		        System.out.println("Executing method: " + methodName);
+		        
+		        long startTime = System.currentTimeMillis();
+		        try {
+		            // Proceed with the original method execution
+		            joinPoint.proceed();
+		        } catch (Throwable throwable) {
+		            throwable.printStackTrace();
+		        }
+		        
+		        long endTime = System.currentTimeMillis();
+		        long executionTime = endTime - startTime;
+		        System.out.println("Method execution time: " + executionTime + "ms");
+		    }
+		}
+
+In the LoggingAspect class, we define a method logExecutionTime() that will be executed before the methods matched by the pointcut expression execution(* com.example.database.*.*(..)). This expression selects all methods within the com.example.database package.
+
+The logExecutionTime() method receives a JoinPoint parameter, which represents the method being intercepted. We extract the method name using joinPoint.getSignature().getName() and print it as part of the logging information.
+
+We record the start time before proceeding with the original method execution using System.currentTimeMillis(). After the method execution, we calculate the execution time and print it.
+
+Now, in your application code, you can have classes and methods in the com.example.database package that perform various database operations.
+
+ 21. Fail safe Iterator
+ A fail-safe iterator is a type of iterator that guarantees that it will not throw a 
+ ConcurrentModificationException even if the underlying collection is modified while iterating. 
+ This behavior is achieved by working on a copy of the original collection's internal data structure.
+
+ In Java, the java.util.concurrent package provides the 
+ CopyOnWriteArrayList and 
+ CopyOnWriteArraySet classes
+ 
+        CopyOnWriteArrayList<String> list = new CopyOnWriteArrayList<>();
+ 		for(String element: list) {
+        	System.out.println(element);
+        	if (element.equals("Banana")) {
+                list.add("Mango");
+            }
+        }
+        System.out.println("after list: " + list);
+		o/p: Apple
+			Banana
+			Orange
+			after list: [Apple, Banana, Orange, Mango]
+
+ 22. Type of Authentications
+	Basic Authentication: This is a simple authentication mechanism where the client sends a username and password with each request. The server verifies the credentials and grants access if they are valid.
+	
+	Form-Based Authentication: This authentication method uses HTML forms to collect user credentials (username and password) and submits them to the server for verification. Spring Security provides support for handling form-based authentication.
+	
+	JSON Web Token (JWT) Authentication: JWT is a popular token-based authentication mechanism. It involves issuing a digitally signed token to the client upon successful authentication. The client includes this token with subsequent requests to access protected resources. Spring Security supports JWT-based authentication.
+	
+	OAuth 2.0: OAuth 2.0 is an industry-standard protocol for authorization. It enables third-party applications to access protected resources on behalf of a user. Spring Security provides OAuth 2.0 support, allowing you to integrate with OAuth providers like Google, Facebook, or custom authorization servers.
+	
+	OpenID Connect: OpenID Connect is an extension of OAuth 2.0 and provides an identity layer on top of it. It allows clients to verify the identity of end-users based on authentication performed by an authorization server. Spring Security supports OpenID Connect for authentication and user information retrieval.
+
+	LDAP Authentication: Lightweight Directory Access Protocol (LDAP) is often used for centralized authentication and authorization. Spring Security provides LDAP support, allowing you to authenticate users against an LDAP server.
+ 
+ 23. Spring Security - LDAP
+ 	
+            
+    LDAP Authentication: Lightweight Directory Access Protocol (LDAP) is 
+    often used for centralized authentication and authorization. 
+    Spring Security provides LDAP support, allowing you to authenticate users against an LDAP server.
+ 
+ 24. How to make one or specific apis free from authentication
+ 	- In Spring Security, you can configure an endpoint to bypass authentication
+ 	
+ 	@Configuration
+	@EnableWebSecurity
+	public class SecurityConfig extends WebSecurityConfigurerAdapter {
+    
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http.authorizeRequests()
+            .antMatchers("/public-endpoint").permitAll() // Endpoint to bypass authentication
+            
+ 25. JPA Repository - how to handle table without a primary key
+ 	In JPA (Java Persistence API), it is generally recommended to have a primary key defined for 
+ 	each entity. However, if you have a table without a primary key and still want to work with 
+ 	it using JPA, you can use a workaround by creating a composite key using all the columns of 
+ 	the table.
+ 	
+ 	Suppose we have a table called "Employee" that doesn't have a primary key, but we can uniquely identify each employee by combining the "employeeId" and "companyId" columns.
+
+		Define the Composite Key Class:
+		Create a separate class to represent the composite key. Let's call it "EmployeeId":
+		java
+		
+		@Embeddable
+		public class EmployeeId implements Serializable {
+		    private Long employeeId;
+		    private Long companyId;
+		
+		    // Constructors, getters, and setters
+		}
+		Define the Entity Class:
+		Create an entity class to map the "Employee" table using the composite key:
+		java
+
+		@Entity
+		public class Employee {
+		    @EmbeddedId
+		    private EmployeeId id;
+		
+		    // Other columns and their mappings
+		
+		    // Constructors, getters, and setters
+		}
+ 	
+ 26. synchronized & concurrent collections
+ 	  HashMap is not synchronized by default. HashMap is a non-thread-safe implementation of
+ 	  the Map interface in Java. This means that if multiple threads concurrently access or modify
+ 	  a HashMap instance without external synchronization, it can lead to unexpected behavior and 
+ 	  data inconsistencies.
+ 	  
+ 	  Concurrent hashmap achieve thread safety by using advanced and sophisticated techniques like lock stripping.
+ 	   For example, the ConcurrentHashMap divides the whole map into several segments and locks only 
+ 	   the relevant segments, which allows multiple threads to access other segments of the same 
+ 	   ConcurrentHashMap without locking.
+ 	   
+ 27. WebFlux - reactive programming
+ 	Reactive programming is a programming paradigm that focuses on building systems that can
+ 	 handle and respond to asynchronous events and streams of data. It provides a way to design 
+ 	 applications that are more responsive, resilient, and scalable.	
+ 	 
+ 	 
+ 	 @RestController
+	public class UserController {
+	
+	    @GetMapping("/users")
+	    public Flux<User> getAllUsers() {
+	        // Simulated asynchronous data retrieval
+	        return Flux.just(new User("John"), new User("Jane"), new User("Bob"))
+	                .delayElements(Duration.ofSeconds(1));
+	    }
+	}
+	Test the API endpoint using a browser or API testing tool. You should see the list of users 
+	being returned, with each user appearing after a delay of one second.
+
+ 28. Asynchronous
+ 	By default, the embedded Tomcat server provided by Spring Boot utilizes a thread pool to 
+ 	handle incoming requests concurrently. This concurrent processing allows multiple requests 
+ 	to be handled simultaneously, which can improve the responsiveness and scalability of 
+ 	your application.
+
+
+	This thread-based concurrency model is synchronous in nature, as each request is 
+	processed sequentially on its assigned thread. The thread will not be available to
+	 handle other requests until it completes processing the current request. 
+	 This behavior is suitable for many applications and is the default mode of operation 
+	 in Spring Boot.
+	
+	Spring Boot also provides support for asynchronous processing. By using the @Async annotation
+	 and returning a CompletableFuture or a DeferredResult from an endpoint method, you can 
+	 achieve true asynchronous behavior where the processing of a request can be delegated to a 
+	 separate thread, freeing up the Tomcat thread to handle other requests in the meantime.
+
+	So, while embedded Tomcat in Spring Boot provides concurrency through thread pooling, allowing
+	 for efficient handling of multiple requests, the asynchronous processing support provided 
+	 by Spring Boot enables even more advanced asynchronous behavior when needed.
+	 
+		1. Add the @EnableAsync annotation to your application's main class or a configuration class. This enables support for asynchronous processing.
+
+		2. Annotate your endpoint methods with @Async to indicate that they should be executed asynchronously.
+
+		3. Return a CompletableFuture or a DeferredResult from the endpoint method to represent the asynchronous result.
+ 
+ 29. springboot - single service - transaction - if fails - save data in some tables but not in others
+ 		In a scenario where a transaction fails and you need to rollback or revert changes made 
+ 		to multiple tables while keeping the changes made to one table, you can use selective 
+ 		rollback techniques.
+ 		
+ 		The @Transactional annotation is typically used in Spring applications to define 
+ 		transactional boundaries for methods or classes. It indicates that a method or a group 
+ 		of methods should be executed within a database transaction context.
+ 		
+ 		Database Operations: When you need to perform multiple database operations as a single 
+ 		unit of work, such as saving multiple entities or updating related tables. The @Transactional
+ 		 annotation ensures that either all operations succeed and are committed, 
+ 		 or they are rolled back as a whole, maintaining data consistency.
+ 		
+ 		@Transactional
+		public class MyService {
+			public void updateTables() {
+	        EntityTransaction transaction = entityManager.getTransaction();
+	        try {
+	            transaction.begin();
+	        }.......
+	        	transaction.commit();
+	        }catch(){
+	        	transaction.rollback();
+	        }
+	    }
+	    
+ 30. Auth interceptor to process auth header.
+ 
+ 31. java stream order: 
+ 		source -> intermediate1 -> intermediate2 -> terminal -> stream of data
+ 
+ 32. Database cluster/non-cluster index?
+		CREATE CLUSTERED INDEX IX_Employees_EmployeeID ON Employees(EmployeeID);
+			With this clustered index, the data in the "Employees" table will be physically ordered 
+			by the "EmployeeID" values. This can be beneficial if we frequently perform queries 
+			that involve searching or sorting based on the employee ID.
+			
+			it's important to note that creating a cluster index can have an impact on the insert and update operations, as the data may need to be rearranged to maintain the physical ordering.
+			Non-cluster indexes are useful for speeding up search operations on frequently queried columns but may introduce additional overhead during insert, update, and delete operations since the indexes need to be maintained.
+			
+		
+		CREATE NONCLUSTERED INDEX IX_Employees_Department ON Employees(Department);
+			This non-clustered index on the "Department" column will create a separate index structure
+			 that allows faster lookups based on department values. 
+		
+		When to use what?
+		 Primary Key: If the table has a primary key that uniquely identifies each row, it is a common choice for the clustered index. The primary key is often used for efficient lookups and joins.
+		
+		 Column Filtering: When queries frequently involve filtering or searching based on specific column values, a non-clustered index can significantly improve performance. Non-clustered indexes allow for efficient lookup and retrieval of data based on the indexed column values.
+		
+		 Join Operations: If you frequently perform join operations between two or more tables based on specific columns, creating non-clustered indexes on the join columns can enhance the join performance. These indexes can speed up the process of locating and matching rows from different tables.
+		 

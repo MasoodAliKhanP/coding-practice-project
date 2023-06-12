@@ -3,6 +3,7 @@ package com.google.code._0_Concepts;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -94,6 +95,8 @@ public class Java8Concept {
 //		minMax();
 //		instantDateExample();
 //		productMapTest();
+		listOfStringsToSingleString(employeeList);
+		groupByEmployeeTitleAndMapCount(employeeList);
 	}
 
 	private static void java8GettingStarted() {
@@ -113,10 +116,11 @@ public class Java8Concept {
 		int totalLetters = strList.stream()
 				.filter(s -> s.length()>5)
 				.mapToInt(s -> s.length()).sum();
-		
+		//or using reduce
+		strList.stream().filter(s -> s.length() > 5).map(s -> s.length()).reduce(0, (a,b) -> a+b);
 		//list of length of each string
 		int[] strLengths = strList.stream().mapToInt(s->s.length()).toArray();
-//		List<Integer> length =  strList.stream().map(String::length).collect(Collectors.toList());
+		List<Integer> length =  strList.stream().map(String::length).collect(Collectors.toList());
 		
 		//touppercase
 		List<String> toUCase = strList.stream().map(s -> s.toUpperCase()).collect(Collectors.toList());
@@ -142,6 +146,8 @@ public class Java8Concept {
 		// 3.sorted
 		List<String> blist = Arrays.asList("Reflection", "Collection", "Stream");
 		List<String> newBList = blist.stream().sorted((a, b) -> a.compareTo(b)).collect(Collectors.toList());
+		Collections.sort(blist, (a,b) -> a.compareTo(b));
+		
 		newBList.forEach(s -> System.out.println(s));
 		// Terminal Ops
 		// 4.collect
@@ -377,6 +383,24 @@ public class Java8Concept {
 		pMap.put(new Product(2, "wood"), 20);
 		
 		System.out.println("value: " + pMap.get(p1));
+	}
+	
+	private static void listOfStringsToSingleString(List<Employee> employees) {
+		String str = employees.stream()
+				.map(e -> e.getTitle())
+				.reduce((s1, s2) -> s1.concat(", "+s2 )).get();
+		System.out.println(str);
+		
+//		or
+		str = employees.stream().map(Employee::getTitle).collect(Collectors.joining(","));
+		System.out.println(str);
+	}
+	
+	//return map with key title and count of each title
+	private static void groupByEmployeeTitleAndMapCount(List<Employee> employees) {
+		Map<String, Long> titleCountMap = employees.stream()
+                .collect(Collectors.groupingBy(Employee::getTitle, Collectors.counting()));
+		System.out.println(titleCountMap);
 	}
 	
 }

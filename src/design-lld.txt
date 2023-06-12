@@ -18,4 +18,11 @@ Avoid asking interviewer that you can add more objects.
 - chess game 		- Udit
 
 
+ oops - apie
+ abstraction - dealing with interface`
+ polymorphism - method overloadign, overriding
+ inheritance	- extends
+ encapsulation - wrapping data and methods in a class
+
+
 

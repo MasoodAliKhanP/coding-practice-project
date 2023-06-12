@@ -1,5 +1,57 @@
-Notes related  to my projects in Techmojo, Securifi, Paysafe:
+Paysafe:
+ - Paysafe is a financial technology (FinTech) company that provides various payment 
+	solutions and services but does not operate as a bank
+ - Paysafe acts as an intermediary between businesses, consumers, and financial institutions to 
+	facilitate secure and convenient payment transactions.
+ - Paysafe focuses on payment technology and services within the FinTech industry, rather than full bank.
 
+It aims to provide secure and convenient payment solutions to both businesses and consumers.
+ - business looking for payment solution
+ - Become a paysafe partner
+ 	- iso - independent sales organization.
+ 	- isv - independent software vendors.
+ - Consumer
+
+my project: 
+partner onboarding - who then 
+ - onboard isvus / isvca tenants
+
+
+Connectpay Bank:
+As personal banking only
+But here we connect to nano again for transfers
+In connectpay we manage end to end banking system from onboarding to payments 
+
+We integrate with multiple third party systems(like idenfy) and compliance system(comply advantage this is also there during onbaording now recently) during the onboarding for verification of the customers
+
+So once we recieve good to go from complaince system as a webhook notification
+Then we onboard the customer to our system and assign iban( international bank ac number)  with multiple currencies
+
+Then user can perform transactions from one currency to other currency or beneficiaries
+
+
+We do integrate with thirdpaty systems for payments as well since europe payments has sepa and swift 
+
+
+We do also expose our apis to thirdparties to expose them secure we use third party portals like apigee
+Where we use predefined auth functionalities ip whitelisting authcodes and all 
+
+So all these predefined funcationalities would be maintianrd at apigee end which we used to customize in java script
+
+We were using apigee since it is giving us predefined functions 
+
+However we can also write in spring boot but it would take time to build those so we were using those portals
+
+
+The revised Payment Services Directive (PSD2) is a European regulation that requires banks to 
+create mechanisms to enable third-party providers to work securely, reliably and rapidly with 
+the bank's services and data on behalf and with the consent of their customers.
+
+
+
+
+
+Octopus gaming:
  - scrach card , prize on next deposit
  - jackpot feature - money pooling and randomized algo
  - chat application - slow chat - chat history indexing  and trimming

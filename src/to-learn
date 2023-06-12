@@ -1,0 +1,12 @@
+@Valid @Validated Annotation
+Saga pattern working
+Docker and Kubernetes and open shift basic working working
+Create JPA and Spring Security Files
+12 Factor app 
+Aws - Route53, EC2, EKS, ELB, API Gateway, VPC, Aurora, S3, Event Bridge.
+how to prevent attack when someone hijacks token.
+chat application - code for websocket handler
+paysafe - role base access - custom annotation 
+mongo basic commands
+junit-mockito
+java.util.function package -> Function, Supplier, Consumer -> https://blog.knoldus.com/java-util-function-package-in-java-8/

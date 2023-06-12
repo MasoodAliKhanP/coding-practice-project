@@ -1,0 +1,9 @@
+Order Service -   kafka queue - Payment service
+
+Choreography Approach:
+Kafka queue has 2 topics: 
+	- order topic, where order publishes orders
+	- payment topic, where payment publishes success or failure events based on available balance of customer.
+	
+Dependencies using in this project:
+Lombok, Cloud Stream, Kafka, Reactive web (webflux), jpa, 	mysql

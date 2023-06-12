@@ -1,9 +1,23 @@
 package com.google.code._0_Concepts;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.TreeMap;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 class Test {
+
+	// Driver code
+	public static void main(String[] args) {
+		int[] arr = { 1, 2, 3 };
+
+		// Auxillary space to store each path
+		ArrayList<Integer> path = new ArrayList<>();
+//		printSubsequences(arr, 0, path);
+//		treeTraversal();
+		failSafeIteratorTest();
+		CopyOnWriteArrayList c;
+	}
 
 //Recursive function to print all
 //possible subsequences for given array
@@ -47,18 +61,37 @@ class Test {
 // Printing the elements of TreeMap
 		System.out.println("TreeMap: " + tree_map);
 	}
+	
+	private static void failSafeIteratorTest() {
+		// Create a CopyOnWriteArrayList
+        CopyOnWriteArrayList<String> list = new CopyOnWriteArrayList<>();
 
-//Driver code
-	public static void main(String[] args) {
-		int[] arr = { 1, 2, 3 };
+        // Add elements to the list
+        list.add("Apple");
+        list.add("Banana");
+        list.add("Orange");
 
-		// Auxillary space to store each path
-		ArrayList<Integer> path = new ArrayList<>();
+        // Create an iterator
+        Iterator<String> iterator = list.iterator();
 
-		printSubsequences(arr, 0, path);
-		
-		treeTraversal();
+//        while (iterator.hasNext()) {
+//            String element = iterator.next();
+//            System.out.println(element);
+//
+//            // Modify the list during iteration
+//            if (element.equals("Banana")) {
+//                list.add("Mango");
+//            }
+//        }
+        //this works same as above
+        for(String element: list) {
+        	System.out.println(element);
+        	if (element.equals("Banana")) {
+                list.add("Mango");
+            }
+        }
+        System.out.println("after list: " + list);
 	}
+
 }
 
-//This code is contributed by Mukul Sharma
