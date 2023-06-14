@@ -76,7 +76,7 @@ class Employee implements Comparable<Employee>{
 	
 }
 
-public class Java8Concept {
+public class Java8Streams {
 	private static final int WEEK_SECONDS = 7 * 24* 60 * 60;
 	private static final int DAY_SECONDS = 24*60*60;
 	public static void main(String[] args) {

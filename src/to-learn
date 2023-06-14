@@ -1,5 +1,8 @@
-@Valid @Validated Annotation
 Saga pattern working
+
+
+backlog:
+@Valid @Validated Annotation
 Docker and Kubernetes and open shift basic working working
 Create JPA and Spring Security Files
 12 Factor app 
