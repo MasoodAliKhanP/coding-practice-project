@@ -1,0 +1,62 @@
+intellij:
+ctrl space	-> suggestions
+ctrl shift space -> smart suggestion
+option enter -> for quick fixes
+double shift -> search everywhere
+cmd shift U -> toggle case
+cmd shift A  or double shift -> action (like about or show line numbers)
+
+cmd O(alphabet) -> *imp* to search classes (select 'all places' in drop down to search in libs as well)
+
+opt up -> select line or block etc
+cmd / -> comment
+cmd d -> duplicate line
+cmd del -> delete line
+opt shift up/down -> move line
+cmd shift up/down -> move entire method
+cmd - -> collapse
+cmd = -> expand
+cmd shift - -> collapse all
+cmd opt T -> *imp* surround code with try catch etc
+ctrl g, ctrl cmd g -> to select all occurrences of work/symbol
+(expr). -> dot after expression gives post complete options
+
+cmd shift enter -> *imp* to complete statement
+ctrl space then tab -> to replace the current value with suggested value
+
+shift fn F6 -> *imp* to rename
+
+cmd opt v -> to extract to a local variable
+
+ctrl + t -> *imp* refactoring menu
+
+right click (local history) *imp*
+
+cmd opt l  -> format code, just for selected block, select block and use the short cut
+
+cmd p -> parameter info of the method
+
+cmd f1 -> warning description
+opt shift f7 / just cmd f-> *imp* highlight all symbols
+
+cmd shift f  and cmd shift r -> *imp* find in file, replace in file
+
+cnd f12 -> file structure, see all methods, you can also search jst start typing the name of method etc
+
+cmd b / cmd opt b (interfaces) / opt f7(detailed)-> *imp* show all calling places of method
+
+shift esc -> closes view
+
+cmd 3 -> opens view
+
+
+cmd e -> *imp* recently opened files
+cmd shift e -> with code fragment
+
+cmd f -> to find and highlight symbol/word
+
+ctrl shift r -> run main class
+
+debugging:
+expressions to debug
+cmd opt f8 show quick evaluation
