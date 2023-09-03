@@ -1,0 +1,532 @@
+Bash (Unix Shell): 
+
+netstat -tulpn //info about all tcp processes 
+ps aux //process with all details 
+ps -aef 
+fuser -k 6600/tcp //kill tcp process on that port 
+sudo netstat -tulpn| grep ':80' // greping process rnunning at 80 
+sudo lsof -i:7000 //process running on port 
+ps aux | grep -i sqldeveloper| awk '{print $2}' | xargs sudo kill -9 
+ps aux | awk '/[b]eam/ {print $2}' | xargs kill –9 
+pkill -f "sqldeveloper" 
+pgrep -f sqldeveloper    -- to check 
+pidof firefox | xargs kill -9 
+pidof firefox | xargs kill -9  
+sshfs masood@78.47.169.242:/mnt/svn/pilot2_branch/server/src/home/techmojo/Desktop/RemoteMount/   //to mount remote folder locally 
+du -sh 
+df 
+
+Top //cpu usage 
+Free //memory usage 
+scp masood@78.47.169.242:~/backup_files/working_emualtor_integration_service.sql . 
+ln -s to_be_linked_folder .       //To soft link some folder in current folder 
+chmod -R 777 . 
+ls -l //to find any links 
+sudo chown -R resin.resin bingoengine/ 
+/etc/environment, ~/.bashrc, /etc/profile.d/* /etc/profile 
+ls -ln /usr/bin/java 
+
+
+Which / whereis: The whereis command shows you the location for the binary, source, and man pages for a command, whereas the which command only shows you the location of the binary for the command. 
+
+which firefox 
+whereis firefox 
+
+The most common wildcard symbols are the question mark ( ?), which stands for a single character. 
+The asterisk ( * ), which stands for a contiguous string of characters. 
+
+
+Bash Scripts:
+
+START=`date +%s` 
+echo '' > slow.txt 
+while [ $(( $(date +%s) - 1200 )) -lt $START ]; do 
+    echo `date` >> slow.txt 
+    echo "connecting" >> slow.txt 
+    mysql --defaults-extra-file=config.txt  -e 'select * from INFORMATION_SCHEMA.PROCESSLIST ' >> slow.txt 
+    sleep 0.01 
+done 
+echo "the end" 
+
+ 
+
+START=`date +%s` 
+cp log.txt log.backup.txt 
+echo "" > log.txt 
+echo $START 
+
+  
+
+while [ $(( $(date +%s) - 1200 )) -lt $START ]; do 
+    echo `date` >> log.txt 
+    ping 192.168.2.27 -c 2 >> log.txt 
+    printf "\n\n\nNetstat\n" >> log.txt 
+    netstat -nlpa | grep 3306 >> log.txt 
+    printf "\n\n\nTop\n" >> log.txt 
+    top -b -n 1  | head -20  >> log.txt 
+    printf "\n\n\nNmap\n" >> log.txt 
+    nmap -p 3306 localhost >> log.txt 
+    printf "\n\n\nlsof\n" >> log.txt 
+    lsof -i -P -n >> log.txt 
+    echo '------------------------------\n' >> log.txt; 
+    sleep 1; 
+done 
+
+ 
+
+#heap space 
+START=`date +%s` 
+PID=12118 
+while [ $(( $(date +%s) - 604800 )) -lt $START ]; do 
+    outfile="dump_$(date +%Y%m%d_%H-%M-%S).hprof" 
+    outfile_zip="dump_$(date +%Y%m%d_%H-%M-%S).zip" 
+    sudo jmap -dump:live,format=b,file=$outfile $PID 
+    sudo zip -r $outfile_zip $outfile 
+    sudo rm $outfile 
+    sleep 1800 
+done 
+echo "the end" 
+
+ 
+
+ 
+
+#thread dump 
+START=`date +%s` 
+PID=5874 
+echo '' > dump.txt 
+while [ $(( $(date +%s) - 604800 )) -lt $START ]; do 
+    printf "\n\n************************* Thread Dump************************\n\n" >> dump.txt 
+    echo `date` >> dump.txt 
+    sudo jstack -l $PID >> dump.txt 
+    sleep 1800 
+done 
+echo "the end" 
+
+
+Ssh: 
+vim ~/.ssh/authorized_keys 
+sudo vi /etc/ssh/sshd_config 
+
+
+Less: 
+Less –N file.txt 
+/searchstring 
+G last line, g first line 
+Search is only top to bottom 
+?searchString for backward search 
+q  exit 
+
+ 
+Grep: 
+zcat integrationservice?/2017-12-06.integrationservice.tar.gz | grep "7446851156" 
+zcat integrationservice1/2017-12-06.integrationservice.tar.gz | grep -a -C10 "7446851156" 
+fgrep      // to include escape chars in search string 
+grep -Ri 'messaging' .     //i for case insensitive, R for recursive 
+
+Find: 
+find . -iname pro\*     //to find all files starting with pro 
+Use -iname for case insensitive search 
+Locate: The basic form of the locate command finds all the files on the file system, starting at the root, that contain all or any part of the search criteria. 
+locate mydata //to find file or directory 
+locate -b ‘\mydata’ //for exact match 
+
+
+
+Vim: 
+Set number  
+:$ last line 
+/searachstring 
+
+
+Java: 
+java -version 
+// to select from installed alternatives 
+sudo update-alternatives --config java 
+
+ 
+
+Glassfish:
+sudo ./asadmin start-domain // just to start glassfish 
+sudo service glassfish start //also starts all the service (only in pilot2) 
+/etc/init.d/glassfish start 
+
+
+To solve sync problem: 
+
+To complete this operation run the following command locally on host localhost from the GlassFish install location /opt/glassfish3: 
+bin/asadmin start-local-instance --node localhost-domain1 --sync normal instance1-gs2c 
+
+asadmin uses: 
+./asadmin list-instances 
+./asadmin stop-instance instanceName 
+./asadmin stop-domain 
+./asadmin start-domain 
+./asadmin restart-domain 
+
+Stuck: 
+
+steps if application gets stuck or name already exists: 
+https://stackoverflow.com/questions/13670538/cannot-deploy-deployment-error-for-module-application-name-is-already-in-use-pl 
+
+- find -name topgame-frontend 
+- delete /domains/domain1/applications/topgame-frontend 
+- copy domain.xml.withoutfrontend to domain.xml 
+- restart glassfish 
+- start gs2c with script  - /opt/glassfish3/glassfish/scripts  -  restart-gs2c.sh 
+- deploy your application again 
+
+Enabling debugging: 
+From ui itself, just check the tick mark in jvm settings 
+File path to change config to point to local sources: 
+glassfish3/glassfish/nodes/localhost-domain1/instance1-gs2c/config/domain.xml 
+
+To restart individual cluster 
+masood@web-pilot2 /opt/glassfish3/glassfish/scripts $ cat restart-gs2c.sh  
+if [ $(pgrep -f instance1-gs2c) -gt 0 ];then kill -9 $(pgrep -f instance1-gs2c); else echo "Not Found instance1-gs2c server";fi 
+sh /opt/glassfish3/glassfish/bin/asadmin start-cluster --verbose gs2c-cluster 
+
+ 
+To deploy appliaction in a cluster 
+https://docs.oracle.com/cd/E18930_01/html/821-2432/geyvr.html 
+https://docs.oracle.com/cd/E18930_01/html/821-2433/undeploy-1.html#SJSASEEREFMANundeploy-1 
+https://docs.oracle.com/cd/E18930_01/html/821-2433/deploy-1.html#SJSASEEREFMANdeploy-1 
+
+Asadmin> list-clusters 
+Asadmin> deploy dir/war-name.war  --target cluster-name 
+
+For undeploy War name should be without .war 
+as-install/bin/asadmin> undeploy war-name  --target cluster-name 
+
+
+Ant Commands: 
+ant build 
+ant targetname 
+ant war.frontend //to just build frontend 
+ant update.static //does build.static and copy.static 
+
+
+Resin: 
+sudo service resin start 
+/usr/local/resin - resin installed folder 
+/usr/local/resin/doc - folder of application that are linked 
+
+ 
+ 
+
+My Sql database Queries: 
+
+sudo service mysql stop 
+sudo systemctl disable mysql   #To disable on startup 
+sudo /etc/init.d/mysqld start 
+ 
+mysql -u root -p database_name < file.sql 
+mysql -h 172.16.9.47 -u root -pquartz -P 3307 < database.sql 
+mysqldump -u root -p emulator-integration-service > working_emualtor_integration_service.sql 
+dc up -d mysql 
+mysql -h 172.16.9.47 -u root -pquartz -P 3307 < database.sql 
+mysql -h 192.168.2.45 -u  dev_pathan -p  -P 3306 
+mysql -h 192.168.2.45 -u  chat_usr -p  -P 3306 
+
+
+
+To check standby: 
+select name,open_mode,database_role from v$database 
+ 
+Git Commands: 
+git ls-files --deleted -z | xargs -0 git rm // to remove tracking of deleted files 
+git init
+git status
+git add back-office/
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/MasoodAliKhanP/JavaCodeTemplates.git
+git push -u origin main
+ 
+ 
+
+Docker Compose: 
+sudo service docker status / sudo systemctl is-active docker 
+sudo service docker start 
+
+Run as daemon process: 
+sudo docker-compose up -d 
+sudo docker-compose logs -f mysql 
+dc stop bots chatserver && 
+dc rm -f bots chatserver && 
+dc up -d bots chatserver && 
+dc logs -f chatserver | grep -A10 ERROR 
+dc logs -f bots 
+
+ 
+ 
+
+SVN: 
+Svn create new project: 
+svn mkdir <repo>/newProject -m "Creating dir for newProject"  
+svn checkout <repo>/newProject /path/to/local/codebase  
+svn add /path/to/local/codebase/*  
+svn commit /path/to/local/codebase -m "adding initial codebase" 
+
+ 
+
+Best site for svn commands: 
+
+http://web.archive.org/web/20110316170621/http://www.duchnik.com/tutorials/vc/svn-command-reference 
+svn co --username india_tmp --password 4vt7dj9589H https://svn.octopusgaming.com/wwg/trunk/affiliate/ 
+
+Create branch: 
+svn --username india_tmp --password 4vt7dj9589H copy https://svn.octopusgaming.com/wwg/trunk/    https://svn.octopusgaming.com/wwg/branches/pilot2_branch    -m "Creating a private branch of /wwg/trunk pilot2 branch." 
+
+ 
+
+Checkout: 
+nohup svn co --username india_tmp --password 4vt7dj9589H https://svn.octopusgaming.com/wwg/branches/pilot2_branch & 
+
+ 
+To update branch from trunk 
+//Run in Branch 
+svn merge https://svn.octopusgaming.com/wwg/trunk 
+Merge branch into trunk: 
+//Run in trunk 
+svn merge --reintegrate /link/to/branch/project 
+https://stackoverflow.com/questions/299142/using-tortoisesvn-how-do-i-merge-changes-from-the-trunk-to-a-branch-and-vice-ver 
+https://sepcot.com/blog/2007/04/svn-merge-branch-trunk 
+To perform on trunk (Range of commits) 
+svn merge -rXXXX:YYYY svn+ssh://server/path/to/branch/myBranch 
+svn merge -r33623:33628 https://svn.octopusgaming.com/wwg/branches/pilot2_branch/server 
+Where X (Exclusive) is branch revision number from the point to merge and Y 
+(Inclusive) is latest trunk revision
+Single Commit 
+svn merge -c33623 https://svn.octopusgaming.com/wwg/branches/pilot2_branch/server 
+svn log --stop-on-copy 
+svn info //to see project info 
+svn status // to see files that are not commited yet 
+svn log -v --limit 10 https://svn.engage-wwg.com/wwg/branches/private/techmojo/init/server 
+svn log --verbose -r 42 cloud_file_path_if_cloud 
+svn diff //to see changes in file before commit 
+svn diff -r 29599:29627 
+svn diff -rPREV // if no commited just use svn diff 
+Svn diff –c –1234 . //diff of particular commit 
+svn co --username india_tmp --password 4vt7dj9589H https://svn.engage-wwg.com/wwg/trunk/BonusService 
+svn commit -m 'enabling html5' game_list.dgs 
+Merging from master: 
+//you can get revision number form “svn info” 
+svn merge -r30664:HEAD https://svn.octopusgaming.com/wwg/trunk/ . 
+svn update //to update current branch 
+
+Create branch from commit: 
+svn copy -r34519 https://svn.octopusgaming.com/wwg/trunk/chat_server11 https://svn.octopusgaming.com/wwg/branches/bingo_branch/chat_server11_34519_Feb2020 
+
+
+Discard changes: 
+svn revert foo.c //particular file 
+svn revert --recursive . //whole directory 
+Revert to earlier revision number: 
+svn update -r <earlier_revision_number> //this is just local, commit does not work 
+svn merge -r HEAD:xxxxx. //xxxxx excluded, with this you can execute commit next 
+svn merge -c -REV . //rever a particular revison 
+
+Svn add folder: 
+$ svn add papers 
+
+When facing problems adding a folder 
+https://stackoverflow.com/questions/374313/svn-error-not-a-working-copy 
+$ mv papers papers_ 
+$ svn cleanup 
+$ svn revert papers Reverted 'papers' 
+$ mv papers_/ papers 
+$ svn add papers 
+
+
+svn ignore particular folder: 
+svn checkout http://www.example.com/project 
+cd project 
+svn update --set-depth=exclude docs 
+rm -fr docs 
+
+Ex: 
+masood@masood-ThinkPad-L450:~/Desktop/code/current/server$ svn up --set-depth=exclude res/main/casinoStaticResources 
+D    res/main/casinoStaticResources 
+masood@masood-ThinkPad-L450:~/Desktop/code/current/server$ svn up 
+
+remove a file from version control: 
+svn rm --keep-local my_important_file 
+
+Maven: 
+mvn compile 
+mvn package 
+mvn clean install 
+nohup mvn spring-boot:run & 
+mvn dependency:tree 
+--copy dependencies to folder 
+mvn dependency:copy-dependencies -DoutputDirectory="log4j2" 
+--copy sources to folde 
+mvn dependency:copy-dependencies -Dclassifier=sources -DoutputDirectory="log4j2-src" 
+--get dependency list 
+mvn dependency:list | grep log4 
+
+
+ 
+
+Consul: 
+
+to start: 
+sudo consul agent -config-dir ~/consul-config/server -bootstrap=true -client=0.0.0.0 
+sudo consul agent -config-dir ~/consul-config/server -bootstrap=true -client=0.0.0.0 
+sudo serivce consul restart 
+
+ 
+
+place_of_config: consul-config/server/config.json 
+version_installed: 0.9.0 
+~/consuldata: place where consul stores its data 
+keyvalues used form insert.sh file 
+
+
+Consul commands: 
+- consul kv get -recurse 
+- to add key val: 
+
+- ex: consul kv put config/bingo-chatserver/oracle.datasource.URL "jdbc:oracle:thin:@dbnodeo1t-vip:1521/GLGDBT" 
+
+ 
+ 
+
+Mongo: 
+Installation: 
+sudo yum reinstall -y mongodb-org-server.x86_64 
+show dbs 
+use databaseName 
+show collections; 
+db.getCollectionNames(); 
+show users; 
+db.getUsers(); 
+db.<collectionName>.insert({field1: "value", field2: "value"}) 
+db.<collectionName>.insert([{field1: "value1"}, {field1: "value2"}]) 
+db.<collectionName>.insertMany([{field1: "value1"}, {field1: "value2"}]) 
+db.<collectionName>.find(); 
+db.<collectionName>.find().limit(10); 
+db.<collectionName>.find({"_id": ObjectId("someid")}); 
+db.<collectionName>.find({"_id": ObjectId("someid")}, {field1: 1, field2: 1}); 
+db.<collectionName>.find({"_id": ObjectId("someid")}, {field1: 0}); // Exclude db.<collectionName>.count(); 
+db.<collectionName>.dataSize()  
+db.<collectionName>.storageSize()  
+db.<collectionName>.totalSize()  
+db.<collectionName>.totalIndexSize() 
+
+ 
+ 
+
+Redis:  
+redis-server  // tostart 
+redis-cli ping  // tocheck running 
+redis-cli  //to access redis 
+sudo service redis start 
+redis-server --version 
+redis-cli flushall 
+redis-cli --stat 
+redis-cli keys '*'  | sort 
+hgetall "\xac\xed\x00\x05t\x00\x1cc951590b0093c7f7ba470d2522f3"  
+
+ 
+
+Clear boot-space: 
+yum list kernel 
+yum install yum-utils 
+package-cleanup --oldkernels --count=2 
+
+ 
+
+ 
+
+references / paths: 
+sudo vim /etc/security/limits.conf 
+sudo vim /etc/nginx/nginx.conf 
+cat /etc/sysctl.conf 
+cat /proc/10383/limits 
+cat /proc/cpuinfo 
+
+On nginx machine: while : ;do curl http://127.0.0.1/nginx_status ; sleep 1; done 
+On application machine: while : ;do sudo netstat -nap | grep 16120| wc -l; sleep 1; done 
+
+After applying changes in limits.conf 
+sudo sysctl --system 
+sudo sysctl -p 
+restart session 
+
+Restart nginx after changes in nginx.conf 
+sudo service nginx restart 
+
+scp -r chat-server-root root@10.1.0.7:~ 
+ping 10.1.0.7 
+top 
+ulimit -n, ulimit -a, ulimit -Hn 
+
+ 
+ss -s 
+netstat -antp | grep -E '9090|1234' | grep ESTABLISHED | wc -l 
+netstat -antp | grep -E '443'| wc -l 
+  
+cat /proc/sys/fs/file-nr  
+cat /proc/sys/fs/file-max 
+cat /proc/sys/net/ipv4/tcp_fin_timeout 
+  
+cat /proc/2310/limits 
+  
+cat /etc/sysctl.conf 
+cat /etc/security/limits.conf 
+sysctl -p 
+
+ulimit -Hn 
+ulimit -Sn 
+ulimit -a 
+top 
+free -mh 
+df -h 
+while : ;do  netstat -antp | grep -E '443'| wc -l ; sleep 1; done 
+
+
+Db slow check: 
+START=`date +%s` 
+echo '' > slow.txt 
+while [ $(( $(date +%s) - 1200 )) -lt $START ]; do 
+    echo `date` >> slow.txt 
+    echo "connecting" >> slow.txt 
+    mysql --defaults-extra-file=config.txt  -e 'select * from INFORMATION_SCHEMA.PROCESSLIST ' >> slow.txt 
+    sleep 0.01 
+done 
+echo "the end" 
+
+Basic checkts script: 
+START=`date +%s` 
+cp log.txt log.backup.txt 
+echo "" > log.txt 
+echo $START 
+
+  
+
+while [ $(( $(date +%s) - 1200 )) -lt $START ]; do 
+echo `date` >> log.txt 
+ping 192.168.2.27 -c 2 >> log.txt 
+printf "\n\n\nNetstat\n" >> log.txt 
+netstat -nlpa | grep 3306 >> log.txt 
+printf "\n\n\nTop\n" >> log.txt 
+top -b -n 1  | head -20  >> log.txt 
+printf "\n\n\nNmap\n" >> log.txt 
+nmap -p 3306 localhost >> log.txt 
+printf "\n\n\nlsof\n" >> log.txt 
+lsof -i -P -n >> log.txt 
+echo '------------------------------\n' >> log.txt; 
+sleep 1; 
+done 
+
+  
+
+Dump: 
+sudo jmap -dump:live,format=b,file=$outfile $PID   ---- heap dump 
+sudo jstack -l $PID >> dump.txt     -- thread dump 
+sudo -u <username> /opt/jdk/jdk1.8.0_271/bin/jmap -dump:live,format=b,file=<some_path>.hprof <pid> 
+replace user, javaversion, filepath and processid (to chat server) 
+
+ 
