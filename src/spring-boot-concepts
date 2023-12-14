@@ -107,6 +107,26 @@ All Required Dependencies Are Available at Initialization Time - it means that w
 Constructor injection simplifies writing unit tests
 Mockito, we can create mock objects that we can then pass into the constructor.
 
+Then why is setter AutoWrite still there?
+   1) It provides flexibility , if at any point we what to change the dependency we can change it. Also not setting this particular dependency wont
+result in failure. 
+   2) In case we have circular dependency, we can set the dependency later. 
+	
+   3) Optinal Dependency : we can mark this as optinal depency and move on , if there are no plugins avaliable. If they are avalible the container will 
+     call the setter and inject the depency.
+	```public class PluginManager {
+
+    private List<Plugin> plugins = new ArrayList<>();
+
+    // Setter method with @Autowired (optional dependency)
+    @Autowired(required = false)
+    public void setPlugins(List<Plugin> plugins) {
+        this.plugins = plugins;
+    }
+
+    // Other methods in the plugin manager
+}```
+
 ----5. Hibernate - 
 When a POJO instance is in session scope, it is said to be persistent i.e hibernate 
 detects any changes made to that object and synchronizes it with database when we close or flush the session.
